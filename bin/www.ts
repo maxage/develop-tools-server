@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
 /**
- * Module dependencies.
+ * 模块依赖项。
  */
 import app from '../app'
 import http from 'http'
 import d from 'debug';
-
 const debug = d('graphql-demo:server');
 
 /**
- * Get port from environment and store in Express.
+ * 从环境中获取端口并存储在 Express 中。
  */
 
 const port = normalizePort(process.env.PORT || '3022');
+console.log(process.env.PORT);
 app.set('port', port);
 
 /**

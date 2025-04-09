@@ -3,11 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon"
+    "start": "tsx ./bin/www.ts"
   },
   "dependencies": {
+    "axios": "^1.8.4",
+    "cheerio": "^1.0.0",
     "cookie-parser": "~1.4.4",
+    "dayjs": "^1.11.13",
     "debug": "~2.6.9",
+    "dotenv": "^16.4.7",
     "express": "5.0.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
@@ -17,9 +21,11 @@
   "devDependencies": {
     "@types/cookie-parser": "^1.4.8",
     "@types/debug": "^4.1.12",
+    "@types/express": "^5.0.1",
     "@types/http-errors": "^2.0.4",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.14.0",
-    "ts-node": "^10.9.2"
+    "tsx": "^4.19.3",
+    "typescript": "^5.3.3"
   }
 }

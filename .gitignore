@@ -31,4 +31,3 @@ coverage
 *.tsbuildinfo
 
 .logs/
-types/*.d.ts
