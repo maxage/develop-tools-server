@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import {proxyPicture} from "../utils";
 import axios from "axios";
 import {WEIBO_API} from "../constant";

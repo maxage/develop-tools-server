@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import axios from "axios";
 import {proxyPicture} from "../utils";
 import {TOUTIAO_API, TOUTIAO_PREFIX} from "../constant";

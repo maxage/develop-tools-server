@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import {Buffer} from "node:buffer"
 import * as cheerio from "cheerio"
 import iconv from "iconv-lite"

@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import * as cheerio from "cheerio"
 import {parseRelativeDate} from "../utils";
 import axios from "axios";

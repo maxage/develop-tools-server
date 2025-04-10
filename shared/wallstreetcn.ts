@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import axios from "axios";
 import {WALLSTREETCN_HOT_API, WALLSTREETCN_LIVE_API, WALLSTREETCN_NEWS_API} from "../constant";
 

@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import axios from "axios";
 import {THEPAPER_API, THEPAPER_DETAIL_API, THEPAPER_MOBILE_DETAIL_API} from "../constant";
 

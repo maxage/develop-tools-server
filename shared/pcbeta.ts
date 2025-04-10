@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import {rss2json} from "../utils";
 import dayjs from "dayjs/esm";
 import utc from "dayjs/esm/plugin/utc";

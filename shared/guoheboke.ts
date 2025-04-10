@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import * as cheerio from "cheerio"
 import axios from "axios";
 import {GUOHEBOKE_API} from "../constant";

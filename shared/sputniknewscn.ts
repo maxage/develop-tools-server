@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import * as cheerio from "cheerio"
 import {SPUTNIKNEWSCN_API} from "../constant";
 import axios from "axios";

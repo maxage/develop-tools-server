@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import {parseRelativeDate} from "../utils";
 import axios from "axios";
 import {JIN10_API, JIN10_DETAIL_API} from "../constant";

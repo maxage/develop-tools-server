@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import axios from "axios";
 import {DOUYIN_API, DOYIN_LOGIN_API} from "../constant";
 

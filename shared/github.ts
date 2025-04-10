@@ -1,3 +1,4 @@
+// Power by https://github.com/ourongxing/
 import * as cheerio from "cheerio"
 import axios from "axios";
 import {GITHUB_API, GITHUB_TRENDING_API} from "../constant";

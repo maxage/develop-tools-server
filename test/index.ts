@@ -1,4 +1,3 @@
-
 import {zhihu} from "../shared/zhihu.ts";
 
 function runLog(fun: Function) {
