@@ -28,6 +28,7 @@ declare global {
         type WeiBoRes = import('shared').WeiBoRes;
         type StockRes = import('shared').StockRes;
         type ZhiHuRes = import('shared').ZhiHuRes;
+        type ClsTelegramRes = import('shared').ClsTelegramRes;
     }
 }
 

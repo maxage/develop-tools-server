@@ -373,6 +373,17 @@ declare module 'shared' {
         }[]
     }
 
-
+    interface ClsTelegramRes {
+        title: string
+        url: string
+        brief: string
+        content: string
+        ctime: number
+        pubDate: string
+        share_img: string
+        subjects?: any[]
+        level: string
+        id: number
+    }
 }
 

@@ -26,6 +26,7 @@ import {weibo} from "./weibo";
 import {hotstock} from "./xueqiu";
 import {zaobao} from "./zaobao";
 import {zhihu} from "./zhihu";
+import {telegraph} from "./cls";
 
 // 自动注册所有 API
 export function initApis() {
@@ -64,4 +65,5 @@ export function initApis() {
     apiManager.registerApi("zhihu", zhihu)
 
     // 在这里添加其他 API 的注册
+    apiManager.registerApi("cls_telegraph", telegraph)
 }
