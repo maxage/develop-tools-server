@@ -16,5 +16,20 @@ declare module 'tools' {
             }
         }
     }
+    export interface RSSInfo {
+        title: string
+        description: string
+        link: string
+        image: string
+        updatedTime: string
+        items: RSSItem[]
+    }
+    export interface RSSItem {
+        title: string
+        description: string
+        link: string
+        created?: string
+    }
+
 }
 

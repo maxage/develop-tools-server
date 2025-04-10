@@ -9,7 +9,7 @@ export const baidu = async () => {
     }
     const rawData = await axios.get(BAIDU_API)
     const jsonStr = (rawData.data as string).match(/<!--s-data:(.*?)-->/)
-    const data: shared.Res = JSON.parse(jsonStr![1])
+    const data: shared.BaiduRes = JSON.parse(jsonStr![1])
     return data.cards[0].content.filter(k => !k.isTop).map((k) => {
         return {
             id: k.rawUrl,
@@ -18,6 +18,6 @@ export const baidu = async () => {
             extra: {
                 hover: k.desc,
             },
-        }
+        } as tools.NewsItem
     })
 }

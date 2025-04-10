@@ -6,9 +6,13 @@ import path from "path";
 import dotenv from 'dotenv';
 import indexRouter from "./routes";
 import newsRouter from "./routes/news";
+import {initApis} from "./shared/init";
 
 const app = express();
 dotenv.config();
+// 初始化 API
+initApis();
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 

@@ -3,9 +3,8 @@ import {load} from "cheerio"
 import axios from "axios";
 import {parseRelativeDate} from "../utils";
 import {_36KR_API, _36KR_BASE_API} from "../constant";
-import {apiManager} from "../manager";
 
-const _36kr = async () => {
+export const _36kr = async () => {
     if (!_36KR_API) {
         throw new Error("36kr API is not set")
     }
@@ -32,5 +31,3 @@ const _36kr = async () => {
     })
     return news
 }
-
-apiManager.registerApi("_36kr", _36kr)

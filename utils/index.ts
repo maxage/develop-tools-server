@@ -5,6 +5,8 @@ import customParseFormat from "dayjs/esm/plugin/customParseFormat"
 import duration from "dayjs/esm/plugin/duration"
 import isSameOrBefore from "dayjs/esm/plugin/isSameOrBefore"
 import weekday from "dayjs/esm/plugin/weekday"
+import {XMLParser} from "fast-xml-parser";
+import axios from "axios";
 
 dayjs.extend(utcPlugin)
 dayjs.extend(timezonePlugin)
@@ -17,13 +19,13 @@ dayjs.extend(weekday)
 /**
  * 传入任意时区的时间（不携带时区），转换为 UTC 时间
  */
-export function tranformToUTC(date: string, format?: string, timezone: string = "Asia/Shanghai"): number {
+export const tranformToUTC = (date: string, format?: string, timezone: string = "Asia/Shanghai"): number => {
     if (!format) return dayjs.tz(date, timezone).valueOf()
     return dayjs.tz(date, format, timezone).valueOf()
 }
 
 // cloudflare 里 dayjs() 结果为 0，不能放在 top
-function words() {
+const words = () => {
     return [
         {
             startAt: dayjs(),
@@ -34,45 +36,65 @@ function words() {
             regExp: /^(?:昨[天日]|y(?:ester)?day?)(.*)/,
         },
         {
-            startAt: dayjs().subtract(2, "days"),
-            regExp: /^(?:前天|(?:the)?d(?:ay)?b(?:eforeyesterda)?y)(.*)/,
+            startAt: dayjs
+            ().subtract(2, "days"),
+            regExp:
+                /^(?:前天|(?:the)?d(?:ay)?b(?:eforeyesterda)?y)(.*)/,
         },
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(1)) ? dayjs().weekday(1).subtract(1, "week") : dayjs().weekday(1),
-            regExp: /^(?:周|星期)一(.*)/,
-        },
+            regExp:
+                /^(?:周|星期)一(.*)/,
+        }
+        ,
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(2)) ? dayjs().weekday(2).subtract(1, "week") : dayjs().weekday(2),
-            regExp: /^(?:周|星期)二(.*)/,
-        },
+            regExp:
+                /^(?:周|星期)二(.*)/,
+        }
+        ,
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(3)) ? dayjs().weekday(3).subtract(1, "week") : dayjs().weekday(3),
-            regExp: /^(?:周|星期)三(.*)/,
-        },
+            regExp:
+                /^(?:周|星期)三(.*)/,
+        }
+        ,
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(4)) ? dayjs().weekday(4).subtract(1, "week") : dayjs().weekday(4),
-            regExp: /^(?:周|星期)四(.*)/,
-        },
+            regExp:
+                /^(?:周|星期)四(.*)/,
+        }
+        ,
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(5)) ? dayjs().weekday(5).subtract(1, "week") : dayjs().weekday(5),
-            regExp: /^(?:周|星期)五(.*)/,
-        },
+            regExp:
+                /^(?:周|星期)五(.*)/,
+        }
+        ,
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(6)) ? dayjs().weekday(6).subtract(1, "week") : dayjs().weekday(6),
-            regExp: /^(?:周|星期)六(.*)/,
-        },
+            regExp:
+                /^(?:周|星期)六(.*)/,
+        }
+        ,
         {
             startAt: dayjs().isSameOrBefore(dayjs().weekday(7)) ? dayjs().weekday(7).subtract(1, "week") : dayjs().weekday(7),
-            regExp: /^(?:周|星期)[天日](.*)/,
-        },
+            regExp:
+                /^(?:周|星期)[天日](.*)/,
+        }
+        ,
         {
             startAt: dayjs().add(1, "days"),
-            regExp: /^(?:明[天日]|y(?:ester)?day?)(.*)/,
-        },
+            regExp:
+                /^(?:明[天日]|y(?:ester)?day?)(.*)/,
+        }
+        ,
         {
             startAt: dayjs().add(2, "days"),
-            regExp: /^(?:[后後][天日]|(?:the)?d(?:ay)?a(?:fter)?t(?:omrrow)?)(.*)/,
-        },
+            regExp:
+                /^(?:[后後][天日]|(?:the)?d(?:ay)?a(?:fter)?t(?:omrrow)?)(.*)/,
+        }
+        ,
     ]
 }
 
@@ -113,7 +135,7 @@ const patternSize = Object.keys(patterns).length
  * 预处理日期字符串
  * @param {string} date 原始日期字符串
  */
-function toDate(date: string) {
+export const toDate = (date: string) => {
     return date
         .toLowerCase()
         .replace(/(^an?\s)|(\san?\s)/g, "1") // 替换 `a` 和 `an` 为 `1`
@@ -126,7 +148,7 @@ function toDate(date: string) {
  * 用于描述时间长度
  * @param {Array.<string>} matches 所有匹配结果
  */
-function toDurations(matches: string[]) {
+export const toDurations = (matches: string[]) => {
     const durations: Record<string, string> = {}
 
     let p = 0
@@ -144,7 +166,7 @@ function toDurations(matches: string[]) {
 
 export const parseDate = (date: string | number, ...options: any) => dayjs(date, ...options).toDate()
 
-export function parseRelativeDate(date: string, timezone: string = "UTC") {
+export const parseRelativeDate = (date: string, timezone: string = "UTC") => {
     if (date === "刚刚") return new Date()
     // 预处理日期字符串 date
 
@@ -153,7 +175,7 @@ export function parseRelativeDate(date: string, timezone: string = "UTC") {
     // 将 `\d+年\d+月...\d+秒前` 分割成 `['\d+年', ..., '\d+秒前']`
 
     const matches = theDate.match(/\D*\d+(?![:\-/]|(a|p)m)\D+/g)
-    const offset = dayjs.duration({ hours: (dayjs().tz(timezone).utcOffset() - dayjs().utcOffset()) / 60 })
+    const offset = dayjs.duration({hours: (dayjs().tz(timezone).utcOffset() - dayjs().utcOffset()) / 60})
 
     if (matches) {
         // 获得最后的时间单元，如 `\d+秒前`
@@ -223,4 +245,87 @@ export function parseRelativeDate(date: string, timezone: string = "UTC") {
     }
 
     return date
+}
+
+export const rss2json = async (url: string) => {
+    if (!/^https?:\/\/[^\s$.?#].\S*/i.test(url)) return
+
+    const data = (await axios.get(url)).data
+
+    const xml = new XMLParser({
+        attributeNamePrefix: "",
+        textNodeName: "$text",
+        ignoreAttributes: false,
+    })
+
+    const result = xml.parse(data as string)
+
+    let channel = result.rss && result.rss.channel ? result.rss.channel : result.feed
+    if (Array.isArray(channel)) channel = channel[0]
+
+    const rss = {
+        title: channel.title ?? "",
+        description: channel.description ?? "",
+        link: channel.link && channel.link.href ? channel.link.href : channel.link,
+        image: channel.image ? channel.image.url : channel["itunes:image"] ? channel["itunes:image"].href : "",
+        category: channel.category || [],
+        updatedTime: channel.lastBuildDate ?? channel.updated,
+        items: [],
+    } as tools.RSSInfo
+
+    let items = channel.item || channel.entry || []
+    if (items && !Array.isArray(items)) items = [items]
+
+    for (let i = 0; i < items.length; i++) {
+        const val = items[i]
+        const media = {}
+
+        const obj = {
+            id: val.guid && val.guid.$text ? val.guid.$text : val.id,
+            title: val.title && val.title.$text ? val.title.$text : val.title,
+            description: val.summary && val.summary.$text ? val.summary.$text : val.description,
+            link: val.link && val.link.href ? val.link.href : val.link,
+            author: val.author && val.author.name ? val.author.name : val["dc:creator"],
+            created: val.updated ?? val.pubDate ?? val.created,
+            category: val.category || [],
+            content: val.content && val.content.$text ? val.content.$text : val["content:encoded"],
+            enclosures: val.enclosure ? (Array.isArray(val.enclosure) ? val.enclosure : [val.enclosure]) : [],
+        };
+
+        ["content:encoded", "podcast:transcript", "itunes:summary", "itunes:author", "itunes:explicit", "itunes:duration", "itunes:season", "itunes:episode", "itunes:episodeType", "itunes:image"].forEach((s) => {
+            // @ts-expect-error TODO
+            if (val[s]) obj[s.replace(":", "_")] = val[s]
+        })
+
+        if (val["media:thumbnail"]) {
+            Object.assign(media, {thumbnail: val["media:thumbnail"]})
+            obj.enclosures.push(val["media:thumbnail"])
+        }
+
+        if (val["media:content"]) {
+            Object.assign(media, {thumbnail: val["media:content"]})
+            obj.enclosures.push(val["media:content"])
+        }
+
+        if (val["media:group"]) {
+            if (val["media:group"]["media:title"]) obj.title = val["media:group"]["media:title"]
+
+            if (val["media:group"]["media:description"]) obj.description = val["media:group"]["media:description"]
+
+            if (val["media:group"]["media:thumbnail"]) obj.enclosures.push(val["media:group"]["media:thumbnail"].url)
+
+            if (val["media:group"]["media:content"]) obj.enclosures.push(val["media:group"]["media:content"])
+        }
+
+        Object.assign(obj, {media})
+
+        rss.items.push(obj)
+    }
+
+    return rss
+}
+
+//  TODO : 代理图片
+export const proxyPicture = (url: string, ...args: any) => {
+    return url;
 }
