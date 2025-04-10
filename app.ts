@@ -6,6 +6,7 @@ import path from "path";
 import dotenv from 'dotenv';
 import indexRouter from "./routes";
 import newsRouter from "./routes/news";
+import platformsRouter from "./routes/platforms";
 import {initApis} from "./shared/init";
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/news', newsRouter);
+app.use('/platforms', platformsRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));

@@ -15,7 +15,8 @@ dayjs.extend(duration)
 dayjs.extend(isSameOrBefore)
 dayjs.extend(weekday)
 
-
+// 缓存存储
+const cacheStore = new Map<string, CacheItem<any>>();
 /**
  * 传入任意时区的时间（不携带时区），转换为 UTC 时间
  */
@@ -325,7 +326,106 @@ export const rss2json = async (url: string) => {
     return rss
 }
 
+export const genRandomUserAgent = () => {
+    // 生成随机版本号
+    const getRandomVersion = (base: number, range: number) => {
+        return (base + Math.floor(Math.random() * range)).toFixed(1);
+    };
+
+    const getRandomBuild = () => {
+        return Math.floor(Math.random() * 1000);
+    };
+
+    const chromeVersion = getRandomVersion(120, 3);
+    const firefoxVersion = getRandomVersion(120, 4);
+    const safariVersion = getRandomVersion(16, 2);
+    const edgeVersion = getRandomVersion(120, 3);
+    const operaVersion = getRandomVersion(105, 4);
+    const iosVersion = getRandomVersion(16, 2);
+    const androidVersion = getRandomVersion(13, 2);
+
+    const userAgents = [
+        // Chrome
+        `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersion}.0.0.0 Safari/537.36`,
+        `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersion}.0.0.0 Safari/537.36`,
+        `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersion}.0.0.0 Safari/537.36`,
+
+        // Firefox
+        `Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
+        `Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
+        `Mozilla/5.0 (X11; Linux i686; rv:${firefoxVersion}.0) Gecko/20100101 Firefox/${firefoxVersion}.0`,
+
+        // Safari
+        `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${safariVersion}.${getRandomBuild()} Safari/605.1.15`,
+
+        // Edge
+        `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${edgeVersion}.0.0.0 Safari/537.36 Edg/${edgeVersion}.0.${getRandomBuild()}`,
+        `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${edgeVersion}.0.0.0 Safari/537.36 Edg/${edgeVersion}.0.${getRandomBuild()}`,
+
+        // Opera
+        `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${operaVersion}.0.0.0 Safari/537.36 OPR/${operaVersion}.0.${getRandomBuild()}`,
+        `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${operaVersion}.0.0.0 Safari/537.36 OPR/${operaVersion}.0.${getRandomBuild()}`,
+
+        // Mobile
+        `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosVersion}_${getRandomBuild()} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${iosVersion}.${getRandomBuild()} Mobile/15E148 Safari/604.1`,
+        `Mozilla/5.0 (iPad; CPU OS ${iosVersion}_${getRandomBuild()} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${iosVersion}.${getRandomBuild()} Mobile/15E148 Safari/604.1`,
+        `Mozilla/5.0 (Linux; Android ${androidVersion}; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersion}.0.0.0 Mobile Safari/537.36`,
+        `Mozilla/5.0 (Linux; Android ${androidVersion}; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${chromeVersion}.0.0.0 Mobile Safari/537.36`
+    ];
+
+    return userAgents[Math.floor(Math.random() * userAgents.length)];
+}
+
 //  TODO : 代理图片
 export const proxyPicture = (url: string, ...args: any) => {
     return url;
+}
+
+// 缓存接口
+interface CacheItem<T> {
+    data: T;
+    timestamp: number;
+}
+
+
+/**
+ * 获取缓存数据
+ * @param key 缓存键
+ * @param ttl 缓存时间（毫秒）
+ */
+export const getCache = <T>(key: string, ttl: number = 120000): T | null => {
+    const item = cacheStore.get(key);
+    if (!item) return null;
+
+    const now = Date.now();
+    if (now - item.timestamp > ttl) {
+        cacheStore.delete(key);
+        return null;
+    }
+
+    return item.data;
+}
+
+/**
+ * 设置缓存数据
+ * @param key 缓存键
+ * @param data 缓存数据
+ */
+export const setCache = <T>(key: string, data: T): void => {
+    cacheStore.set(key, {
+        data,
+        timestamp: Date.now()
+    });
+}
+
+/**
+ * 清除缓存
+ * @param key 缓存键，不传则清除所有缓存
+ */
+export const clearCache = (key?: string): void => {
+    if (key) {
+        cacheStore.delete(key);
+    } else {
+        cacheStore.clear();
+    }
 }
