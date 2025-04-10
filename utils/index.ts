@@ -7,6 +7,7 @@ import isSameOrBefore from "dayjs/esm/plugin/isSameOrBefore"
 import weekday from "dayjs/esm/plugin/weekday"
 import {XMLParser} from "fast-xml-parser";
 import axios from "axios";
+import {createHash} from "crypto";
 
 dayjs.extend(utcPlugin)
 dayjs.extend(timezonePlugin)
@@ -377,10 +378,86 @@ export const genRandomUserAgent = () => {
 }
 
 //  TODO : 代理图片
-export const proxyPicture = (url: string, ...args: any) => {
-    return url;
+export const proxyPicture = (url: string, options: {
+    width?: number;
+    height?: number;
+    quality?: number;
+    format?: 'webp' | 'jpeg' | 'png';
+    cache?: boolean;
+    fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside';
+} = {}): string => {
+    if (!url) return '';
+
+    try {
+        const urlObj = new URL(url);
+
+        // 如果已经是代理的URL，直接返回
+        if (urlObj.pathname.startsWith('/proxy/image')) {
+            return url;
+        }
+
+        // 构建代理URL的基础部分
+        const baseProxyUrl = `${process.env.PROXY_URL || 'http://localhost:3000'}/proxy/image`;
+        const proxyUrl = new URL(baseProxyUrl);
+
+        // 添加原始图片URL
+        proxyUrl.searchParams.set('url', encodeURIComponent(url));
+
+        // 添加图片处理参数
+        if (options.width) proxyUrl.searchParams.set('w', options.width.toString());
+        if (options.height) proxyUrl.searchParams.set('h', options.height.toString());
+        if (options.quality) proxyUrl.searchParams.set('q', options.quality.toString());
+        if (options.format) proxyUrl.searchParams.set('fmt', options.format);
+        if (options.cache !== undefined) proxyUrl.searchParams.set('cache', options.cache.toString());
+        if (options.fit) proxyUrl.searchParams.set('fit', options.fit);
+
+        // 添加时间戳和签名
+        const timestamp = Date.now();
+        proxyUrl.searchParams.set('t', timestamp.toString());
+
+        // 如果配置了签名密钥，生成签名
+        const proxySecret = process.env.PROXY_SECRET;
+        if (proxySecret) {
+            const signStr = `${url}${timestamp}${proxySecret}`;
+            const sign = createHash('md5').update(signStr).digest('hex');
+            proxyUrl.searchParams.set('sign', sign);
+        }
+
+        return proxyUrl.toString();
+    } catch (error) {
+        console.error('Error creating proxy URL:', error);
+        return url; // 如果出错则返回原始URL
+    }
 }
 
+/**
+ * 生成缩略图URL
+ * @param url 原始图片URL
+ * @param size 缩略图尺寸
+ */
+export const getThumbnail = (url: string, size: number = 100): string => {
+    return proxyPicture(url, {
+        width: size,
+        height: size,
+        quality: 80,
+        format: 'webp',
+        fit: 'cover'
+    });
+}
+
+/**
+ * 生成预览图URL
+ * @param url 原始图片URL
+ * @param maxWidth 最大宽度
+ */
+export const getPreview = (url: string, maxWidth: number = 800): string => {
+    return proxyPicture(url, {
+        width: maxWidth,
+        format: 'webp',
+        quality: 85,
+        fit: 'inside'
+    });
+}
 // 缓存接口
 interface CacheItem<T> {
     data: T;
