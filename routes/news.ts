@@ -1,7 +1,8 @@
 import express from "express";
 import type {Request, Response, NextFunction} from "express"
-import {quick} from "../shared/_36kr";
+import {_36kr} from "../shared/_36kr";
 import {baidu} from "../shared/baidu.ts";
+import {apiManager} from "../manager";
 
 const router = express.Router();
 
@@ -12,13 +13,7 @@ router.get('/', function (req: Request, res: Response, next: NextFunction) {
         return res.json([]);
     }
 
-    baidu()
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((error) => {
-            next(error);
-        });
+    res.json(apiManager.getApi(platform))
 });
 
 export = router;

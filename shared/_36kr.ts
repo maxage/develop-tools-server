@@ -2,11 +2,14 @@
 import {load} from "cheerio"
 import axios from "axios";
 import {parseRelativeDate} from "../utils";
+import {_36KR_API, _36KR_BASE_API} from "../constant";
+import {apiManager} from "../manager";
 
-export const quick = async () => {
-    const baseURL = "https://www.36kr.com"
-    const url = `${baseURL}/newsflashes`
-    const response = await axios.get(url) as any
+const _36kr = async () => {
+    if (!_36KR_API) {
+        throw new Error("36kr API is not set")
+    }
+    const response = await axios.get(_36KR_API)
     const $ = load(response?.data)
     const news: tools.NewsItem[] = []
     const $items = $(".newsflash-item")
@@ -18,7 +21,7 @@ export const quick = async () => {
         const relativeDate = $el.find(".time").text()
         if (url && title && relativeDate) {
             news.push({
-                url: `${baseURL}${url}`,
+                url: `${_36KR_BASE_API}${url}`,
                 title,
                 id: url,
                 extra: {
@@ -29,3 +32,5 @@ export const quick = async () => {
     })
     return news
 }
+
+apiManager.registerApi("_36kr", _36kr)

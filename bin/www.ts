@@ -6,6 +6,7 @@
 import app from '../app'
 import http from 'http'
 import d from 'debug';
+
 const debug = d('graphql-demo:server');
 
 /**
@@ -13,25 +14,22 @@ const debug = d('graphql-demo:server');
  */
 
 const port = normalizePort(process.env.PORT || '3022');
-console.log(process.env.PORT);
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * 创建 HTTP 服务器。
  */
-
 const server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * 侦听所有网络接口上提供的端口。
  */
-
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
 /**
- * Normalize a port into a number, string, or false.
+ * 将端口规范化为数字、字符串或 false。
  */
 type normalizePortParam = string | number;
 
@@ -52,7 +50,7 @@ function normalizePort(val: normalizePortParam) {
 }
 
 /**
- * Event listener for HTTP server "error" event.
+ * HTTP 服务器“错误”事件的事件侦听器。
  */
 
 function onError(error: NodeJS.ErrnoException) {
@@ -80,9 +78,8 @@ function onError(error: NodeJS.ErrnoException) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * 用于 HTTP 服务器“侦听”事件的事件侦听器。
  */
-
 function onListening() {
     const addr = server.address();
     const bind = typeof addr === 'string'
