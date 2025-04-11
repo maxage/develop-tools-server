@@ -14,6 +14,7 @@ declare module 'tools' {
                 url: string
                 scale: number
             }
+            [key: string]: any // 其他属性,用于扩展
         }
     }
     export interface RSSInfo {

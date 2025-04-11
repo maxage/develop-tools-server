@@ -27,6 +27,8 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+console.log(`服务启动成功，端口：${port}`);
+
 
 /**
  * 将端口规范化为数字、字符串或 false。
