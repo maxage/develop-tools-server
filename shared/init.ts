@@ -96,7 +96,7 @@ export function initApis() {
     apiManager.registerApi("zaobao", zaobao)
     // 知乎
     apiManager.registerApi("zhihu", zhihu)
-
-    // 在这里添加其他 API 的注册
+    // 财联社
     apiManager.registerApi("cls_telegraph", telegraph)
+    // 在这里添加其他 API 的注册
 }

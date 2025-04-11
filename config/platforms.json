@@ -154,14 +154,14 @@
         "platform": "v2ex",
         "label": "V2EX",
         "list": [
-            { "platform": "v2ex", "label": "分享" }
+            { "platform": "v2ex", "label": "V2EX" }
         ]
     },
     {
         "platform": "wallstreetcn",
         "label": "华尔街新闻",
         "list": [
-            { "platform": "wallstreetcn_live", "label": "直播" },
+            { "platform": "wallstreetcn_live", "label": "实时热点" },
             { "platform": "wallstreetcn_news", "label": "新闻" },
             { "platform": "wallstreetcn_hot", "label": "热榜" }
         ]
@@ -193,5 +193,12 @@
         "list": [
             { "platform": "zhihu", "label": "知乎热榜" }
         ]
+    },
+    {
+        "platform": "cls",
+        "label": "财联社",
+        "list": [
+            { "platform": "cls_telegraph", "label": "财联社" }
+        ]
     }
-] 
+]

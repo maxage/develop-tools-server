@@ -8,7 +8,11 @@ export const kuaishou = async () => {
         throw new Error("快手 API is not set")
     }
     // 获取快手首页HTML
-    const html = (await axios.get(KUAISHOU_API)).data
+    const html = (await axios.get(KUAISHOU_API,{
+        headers:{
+            "Cookie":"kpf=PC_WEB; clientid=3; did=web_cee7df9e29754bca0711df605a2477d1; kpn=KUAISHOU_VISION"
+        }
+    })).data
     // 提取window.__APOLLO_STATE__中的数据
     const matches = (html as string).match(/window\.__APOLLO_STATE__\s*=\s*(\{.+?\});/)
     if (!matches) {
