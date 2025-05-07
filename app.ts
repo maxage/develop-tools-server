@@ -3,10 +3,13 @@ import express, {Request, Response, NextFunction} from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import path from "path";
+import fs from "fs";
+
 import dotenv from 'dotenv';
 import indexRouter from "./routes";
 import newsRouter from "./routes/news";
 import platformsRouter from "./routes/platforms";
+import shortUrlRouter from "./routes/shortUrl";
 import proxyRouter from './routes/proxy';
 
 import {initApis} from "./shared/init";
@@ -15,6 +18,11 @@ const app = express();
 dotenv.config();
 // 初始化 API
 initApis();
+// 确保数据目录存在
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, {recursive: true});
+}
 
 // 仅在开发环境下启用跨域
 // if (process.env.NODE_ENV === 'development') {
@@ -43,6 +51,8 @@ app.use('/', indexRouter);
 app.use('/news', newsRouter);
 app.use('/platforms', platformsRouter);
 app.use('/proxy', proxyRouter);
+app.use('/short-url', shortUrlRouter);
+
 app.use(function (req, res, next) {
     next(createError(404));
 });
