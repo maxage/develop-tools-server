@@ -12,10 +12,10 @@ block content
     }
     /* 移动端优化 */
     @media (max-width: 768px) {
-      .error-container {
+      .expired-container {
         padding: 20px;
       }
-      .error-header {
+      .expired-header {
         font-size: 22px;
       }
       .back-btn {
@@ -24,14 +24,14 @@ block content
     }
     /* 超小屏幕优化 */
     @media (max-width: 320px) {
-      .error-container {
+      .expired-container {
         padding: 15px;
       }
-      .error-header {
+      .expired-header {
         font-size: 20px;
       }
     }
-    .error-page {
+    .expired-page {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -41,7 +41,7 @@ block content
       margin: 0;
       padding: 0;
     }
-    .error-container {
+    .expired-container {
       width: 90%;
       max-width: 400px;
       padding: 30px;
@@ -57,21 +57,21 @@ block content
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .error-header {
+    .expired-header {
       color: #e74c3c;
       text-align: center;
       margin-bottom: 20px;
       font-size: 24px;
       word-break: break-word;
     }
-    .error-message {
+    .expired-message {
       text-align: center;
       margin-bottom: 30px;
       color: #666;
       word-break: break-word;
       line-height: 1.6;
     }
-    .error-icon {
+    .expired-icon {
       display: block;
       margin: 0 auto 24px;
       width: 80px;
@@ -105,13 +105,13 @@ block content
       margin-right: 8px;
     }
 
-  .error-page
-    .error-container
-      svg.error-icon(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor")
+  .expired-page
+    .expired-container
+      svg.expired-icon(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor")
         path(d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z")
-      h1.error-header= message
-      p.error-message 抱歉，系统发生了错误。请稍后再试，或者联系网站管理员。
+      h1.expired-header 链接已过期
+      p.expired-message 抱歉，您访问的短链接已过期，无法继续访问。请联系链接创建者获取新的链接，或者返回首页。
       a.back-btn(href="/")
         svg.home-icon(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor")
           path(d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z")
-        span 返回首页
+        span 返回首页 

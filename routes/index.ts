@@ -7,12 +7,14 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req: Request, res: Response, next: NextFunction) {
-    res.render('index', {title: 'Express', users: [{name: 'Timmy', age: 5}, {name: 'Jimmy', age: 6}]});
+    // 重定向到前端应用的主页
+    const frontendUrl = process.env.FRONTEND_URL || 'https://tools.yltf.xyz';
+    res.redirect(frontendUrl);
 });
 
 // 处理短链接访问
-router.get('/s/:shortId', async (req: Request, res: Response): Promise<any> => {
-    const {shortId} = req.params;
+router.get('/s/:shortId', async (req: Request, res: Response) => {
+    const { shortId } = req.params;
 
     // 查找短链接
     const shortLinksDir = path.join(__dirname, '../data/short-links');
@@ -46,12 +48,12 @@ router.get('/s/:shortId', async (req: Request, res: Response): Promise<any> => {
     }
 
     if (!shortLink) {
-        return res.status(404).send('链接不存在');
+        return res.render('notfound');
     }
 
     // 检查是否过期
     if (shortLink.expiryDate && new Date(shortLink.expiryDate) < new Date()) {
-        return res.status(410).send('链接已过期');
+        return res.render('expired');
     }
 
     // 如果有密码保护，渲染密码页面
@@ -131,12 +133,12 @@ router.post('/s/verify/:shortId', async (req: Request, res: Response): Promise<a
         }
 
         if (!shortLink) {
-            return res.status(404).send('链接不存在');
+            return res.render('notfound');
         }
 
         // 检查是否过期
         if (shortLink.expiryDate && new Date(shortLink.expiryDate) < new Date()) {
-            return res.status(410).send('链接已过期');
+            return res.render('expired');
         }
 
         // 验证密码
@@ -169,7 +171,10 @@ router.post('/s/verify/:shortId', async (req: Request, res: Response): Promise<a
         res.redirect(shortLink.originalUrl);
     } catch (error) {
         console.error('处理密码验证时出错:', error);
-        res.status(500).send('服务器错误');
+        res.status(500).render('error', {
+            message: '服务器错误',
+            error: process.env.NODE_ENV === 'development' ? error : {}
+        });
     }
 });
 
