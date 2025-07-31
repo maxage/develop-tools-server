@@ -8,14 +8,13 @@ export const zhihu = async () => {
     const res: shared.ZhiHuRes = (await axios.get(ZHIHU_API)).data;
     return res.data
         .map((k) => {
-            const urlId = k.target.url?.match(/(\d+)$/)?.[1]
             return {
-                id: k.target.id,
-                title: k.target.title,
+                id: k.id,
+                title: k.target.title_area.text,
                 extra: {
                     icon: k.card_label?.night_icon && proxyPicture(k.card_label.night_icon),
                 },
-                url: `https://www.zhihu.com/question/${urlId || k.target.id}`,
+                url: k.target.link.url,
             }
         })
 }

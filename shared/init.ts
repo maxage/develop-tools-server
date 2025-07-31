@@ -27,6 +27,7 @@ import {hotstock} from "./xueqiu";
 import {zaobao} from "./zaobao";
 import {zhihu} from "./zhihu";
 import {telegraph} from "./cls";
+import {coolapk} from "./coolapk.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -58,17 +59,17 @@ export function initApis() {
     apiManager.registerApi("kaopu", kaopu)
     // 快手
     apiManager.registerApi("kuaishou", kuaishou)
-    // LinuxDo-热搜
+    // LinuxDo-热搜  TODO
     apiManager.registerApi("linuxdo_hot", linuxDoHot)
-    // LinuxDo-最新
+    // LinuxDo-最新  TODO
     apiManager.registerApi("linuxdo_latest", linuxDoLatest)
     // 牛客
     apiManager.registerApi("nowcoder", nowcoder)
     // 远景论坛-Windows
     apiManager.registerApi("pcbeta_windows", pcbetaWin)
-    // 远景论坛-Windows11
+    // 远景论坛-Windows11 TODO
     apiManager.registerApi("pcbeta_win11", pcbetaWin11)
-    // 什么值得买
+    // 什么值得买 TODO
     apiManager.registerApi("smzdm", smzdm)
     // 奇客
     apiManager.registerApi("solidot", solidot)
@@ -98,5 +99,7 @@ export function initApis() {
     apiManager.registerApi("zhihu", zhihu)
     // 财联社
     apiManager.registerApi("cls_telegraph", telegraph)
+    // 基安
+    apiManager.registerApi("coolapk", coolapk); // 如果有基安的 API，可以在这里注册
     // 在这里添加其他 API 的注册
 }

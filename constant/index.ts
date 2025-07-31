@@ -49,3 +49,4 @@ export const STOCK_LOGIN_API = process.env.STOCK_LOGIN_API
 export const ZAOBAO_API = process.env.ZAOBAO_API
 export const ZHIHU_API = process.env.ZHIHU_API
 export const CLS_API = process.env.CLS_API
+export const COOLAPK_API= process.env.COOLAPK_API

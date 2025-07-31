@@ -8,6 +8,8 @@ import weekday from "dayjs/esm/plugin/weekday"
 import {XMLParser} from "fast-xml-parser";
 import axios from "axios";
 import {createHash} from "crypto";
+import _md5 from "md5";
+import {subtle} from "node:crypto";
 
 dayjs.extend(utcPlugin)
 dayjs.extend(timezonePlugin)
@@ -458,6 +460,7 @@ export const getPreview = (url: string, maxWidth: number = 800): string => {
         fit: 'inside'
     });
 }
+
 // 缓存接口
 interface CacheItem<T> {
     data: T;
@@ -505,4 +508,30 @@ export const clearCache = (key?: string): void => {
     } else {
         cacheStore.clear();
     }
+}
+
+/**
+ * 计算字符串的 MD5 哈希值
+ * @param s
+ */
+export async function md5(s: string) {
+    try {
+        return await myCrypto(s, "MD5")
+    } catch {
+        return _md5(s)
+    }
+}
+
+type Algorithm = "MD5" | "SHA-1" | "SHA-256" | "SHA-384" | "SHA-512"
+
+/**
+ * 根据指定的算法计算字符串的哈希值
+ * @param s
+ * @param algorithm
+ */
+export async function myCrypto(s: string, algorithm: Algorithm) {
+    const sUint8 = new TextEncoder().encode(s)
+    const hashBuffer = await subtle.digest(algorithm, sUint8)
+    const hashArray = Array.from(new Uint8Array(hashBuffer))
+    return hashArray.map(b => b.toString(16).padStart(2, "0")).join("")
 }

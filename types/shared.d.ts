@@ -352,23 +352,66 @@ declare module 'shared' {
 
         }
     }
+
     interface ZhiHuRes {
         data: {
+            id: number
+            type: string
+            style_type: string
+            card_id: string
+            attached_info: string
+            feed_specific: {
+                answer_count: number
+            }
             card_label?: {
                 icon: string
                 night_icon: string
+                type: string
             }
             target: {
-                id: number
-                title: string
-                url: string
-                created: number
-                answer_count: number
-                follower_count: number
-                bound_topic_ids: number[]
-                comment_count: number
-                is_following: boolean
-                excerpt: string
+                title_area: {
+                    text: string
+                }
+                excerpt_area: {
+                    text: string
+                }
+                image_area: {
+                    url: string
+                }
+                metrics_area: {
+                    text: string
+                    font_color: string
+                    background: string
+                    weight: string
+                }
+                label_area?: {
+                    type: string
+                    trend: number
+                    night_color: string
+                    normal_color: string
+                }
+                link: {
+                    url: string
+                }
+            }
+        }[]
+    }
+
+    interface CoolapkRes {
+        data: {
+            id: string
+            // 多行
+            message: string
+            // 起的标题
+            editor_title: string
+            url: string
+            entityType: string
+            pubDate: string
+            // dayjs(dateline, 'X')
+            dateline: number
+            targetRow: {
+                // 374.4万热度
+                subTitle: string
             }
         }[]
     }

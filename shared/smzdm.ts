@@ -2,10 +2,15 @@
 import * as cheerio from "cheerio"
 import axios from "axios";
 import {SMZDM_API} from "../constant";
+import {genRandomUserAgent} from "../utils";
 
 export const smzdm = async () => {
     if (!SMZDM_API) throw new Error("Missing SMZDM_API");
-    const html: any = (await axios.get(SMZDM_API)).data
+    const html: any = (await axios.get(SMZDM_API,{
+        headers: {
+            "User-Agent": genRandomUserAgent()
+        }
+    })).data
     const $ = cheerio.load(html)
     const $main = $("#feed-main-list .z-feed-title")
     const news: tools.NewsItem[] = []
