@@ -28,6 +28,7 @@ import {zaobao} from "./zaobao";
 import {zhihu} from "./zhihu";
 import {telegraph} from "./cls";
 import {coolapk} from "./coolapk.ts";
+import {hupu} from "./hupu.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -100,6 +101,8 @@ export function initApis() {
     // 财联社
     apiManager.registerApi("cls_telegraph", telegraph)
     // 基安
-    apiManager.registerApi("coolapk", coolapk); // 如果有基安的 API，可以在这里注册
+    apiManager.registerApi("coolapk", coolapk);
+    // 虎扑步行街
+    apiManager.registerApi("hupu", hupu);
     // 在这里添加其他 API 的注册
 }
