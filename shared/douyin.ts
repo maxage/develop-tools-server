@@ -23,6 +23,10 @@ export const douyin = async () => {
             id: k.sentence_id,
             title: k.word,
             url: `https://www.douyin.com/hot/${k.sentence_id}`,
+            extra: {
+                rank: k.position,
+                num: k.hot_value,
+            }
         } as tools.NewsItem
     });
 }

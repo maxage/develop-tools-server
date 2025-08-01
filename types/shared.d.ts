@@ -6,6 +6,8 @@ declare module 'shared' {
                 word: string
                 rawUrl: string
                 desc?: string
+                index: number
+                hotScore?: number
             }[]
         }[]
     }
@@ -118,6 +120,7 @@ declare module 'shared' {
                 word: string
                 event_time: string
                 hot_value: string
+                position: number
             }[]
         }
     }

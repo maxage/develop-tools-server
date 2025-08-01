@@ -12,7 +12,9 @@ export const zhihu = async () => {
                 id: k.id,
                 title: k.target.title_area.text,
                 extra: {
-                    icon: k.card_label?.night_icon && proxyPicture(k.card_label.night_icon),
+                    icon: {
+                        url: k.card_label?.night_icon && proxyPicture(k.card_label.night_icon),
+                    }
                 },
                 url: k.target.link.url,
             }

@@ -14,7 +14,9 @@ export const toutiao = async () => {
                 title: k.Title,
                 url: `${TOUTIAO_PREFIX}${k.ClusterIdStr}/`,
                 extra: {
-                    icon: k.LabelUri?.url && proxyPicture(k.LabelUri.url, "encodeBase64URL"),
+                    icon: {
+                        url: k.LabelUri?.url && proxyPicture(k.LabelUri.url)
+                    },
                 },
             }
         })

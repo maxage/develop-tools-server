@@ -8,9 +8,9 @@ export const kuaishou = async () => {
         throw new Error("快手 API is not set")
     }
     // 获取快手首页HTML
-    const html = (await axios.get(KUAISHOU_API,{
-        headers:{
-            "Cookie":"kpf=PC_WEB; clientid=3; did=web_cee7df9e29754bca0711df605a2477d1; kpn=KUAISHOU_VISION"
+    const html = (await axios.get(KUAISHOU_API, {
+        headers: {
+            "Cookie": "kpf=PC_WEB; clientid=3; did=web_cee7df9e29754bca0711df605a2477d1; kpn=KUAISHOU_VISION"
         }
     })).data
     // 提取window.__APOLLO_STATE__中的数据
@@ -34,13 +34,14 @@ export const kuaishou = async () => {
 
         // 获取具体的热榜项数据
         const hotItem = data.defaultClient[item.id]
-
         return {
             id: hotSearchWord,
             title: hotItem.name,
             url: `https://www.kuaishou.com/search/video?searchKey=${encodeURIComponent(hotItem.name)}`,
             extra: {
-                icon: hotItem.iconUrl && proxyPicture(hotItem.iconUrl),
+                icon: {
+                    url: hotItem.iconUrl && proxyPicture(hotItem.iconUrl),
+                }
             },
         }
     })

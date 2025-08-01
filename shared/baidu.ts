@@ -17,6 +17,8 @@ export const baidu = async () => {
             url: k.rawUrl,
             extra: {
                 hover: k.desc,
+                rank: k.index,
+                num: k.hotScore,
             },
         } as tools.NewsItem
     })
