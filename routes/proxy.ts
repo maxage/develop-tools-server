@@ -39,6 +39,27 @@ const verifyRequest = (req: Request): boolean => {
     return true;
 };
 
+// 检测原始图片格式
+const detectImageFormat = (buffer: Buffer): string => {
+    // GIF 文件头
+    if (buffer[0] === 0x47 && buffer[1] === 0x49 && buffer[2] === 0x46) {
+        return 'gif';
+    }
+    // PNG 文件头
+    if (buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47) {
+        return 'png';
+    }
+    // JPEG 文件头
+    if (buffer[0] === 0xFF && buffer[1] === 0xD8) {
+        return 'jpeg';
+    }
+    // WebP 文件头
+    if (buffer[8] === 0x57 && buffer[9] === 0x45 && buffer[10] === 0x42 && buffer[11] === 0x50) {
+        return 'webp';
+    }
+    return 'jpeg'; // 默认返回 jpeg
+};
+
 router.get('/image', async (req: Request, res: Response): Promise<void> => {
     try {
         const {
@@ -61,12 +82,12 @@ router.get('/image', async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        // 解析参数
+        // 解析参数，新增 gif 格式支持
         const options = {
             width: width ? parseInt(width as string) : undefined,
             height: height ? parseInt(height as string) : undefined,
             quality: quality ? parseInt(quality as string) : 80,
-            format: format as 'jpeg' | 'png' | 'webp' | undefined
+            format: format as 'jpeg' | 'png' | 'webp' | 'gif' | undefined
         };
 
         // 检查缓存
@@ -91,8 +112,31 @@ router.get('/image', async (req: Request, res: Response): Promise<void> => {
             }
         });
 
+        const imageBuffer = Buffer.from(response.data);
+        const originalFormat = detectImageFormat(imageBuffer);
+
+        // 如果原图是 GIF 且没有指定格式，并且没有调整尺寸，直接返回原图
+        if (originalFormat === 'gif' && !options.format && !options.width && !options.height) {
+            // 缓存原图
+            if (cache === 'true') {
+                imageCache.set(cacheKey, {
+                    data: imageBuffer,
+                    timestamp: Date.now()
+                });
+            }
+
+            res.set('Content-Type', 'image/gif');
+            res.set('X-Cache', 'MISS');
+            res.set('Cache-Control', 'public, max-age=86400');
+            res.send(imageBuffer);
+            return;
+        }
+
         // 处理图片
-        let image = sharp(response.data);
+        let image = sharp(imageBuffer, {
+            // 为动画 GIF 启用动画支持
+            animated: originalFormat === 'gif'
+        });
 
         // 调整大小
         if (options.width || options.height) {
@@ -109,12 +153,31 @@ router.get('/image', async (req: Request, res: Response): Promise<void> => {
                     image = image.jpeg({ quality: options.quality });
                     break;
                 case 'png':
-                    image = image.png({ quality: options.quality });
+                    image = image.png({
+                        quality: options.quality,
+                        compressionLevel: 6
+                    });
                     break;
                 case 'webp':
                     image = image.webp({ quality: options.quality });
                     break;
+                case 'gif':
+                    // Sharp 支持 GIF 输出
+                    image = image.gif({
+                        // GIF 不支持 quality 参数，但可以设置其他选项
+                        colours: 256, // 最大颜色数
+                        effort: 7,    // 压缩努力程度 (1-10)
+                        dither: 1.0   // 抖动强度
+                    });
+                    break;
             }
+        } else if (originalFormat === 'gif') {
+            // 如果原图是 GIF 但需要处理，保持 GIF 格式
+            image = image.gif({
+                colours: 256,
+                effort: 7,
+                dither: 1.0
+            });
         }
 
         // 输出处理后的图片
@@ -128,8 +191,11 @@ router.get('/image', async (req: Request, res: Response): Promise<void> => {
             });
         }
 
+        // 确定最终的内容类型
+        const finalFormat = options.format || originalFormat || 'jpeg';
+
         // 设置响应头
-        res.set('Content-Type', `image/${options.format || 'jpeg'}`);
+        res.set('Content-Type', `image/${finalFormat}`);
         res.set('X-Cache', 'MISS');
         res.set('Cache-Control', 'public, max-age=86400'); // 24小时客户端缓存
 

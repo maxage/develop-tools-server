@@ -431,5 +431,15 @@ declare module 'shared' {
         level: string
         id: number
     }
+
+    interface JueJinRes {
+        data: {
+            content: [Object],
+            content_counter: [Object],
+            author: [Object],
+            author_counter: [Object],
+            user_interact: [Object]
+        }[]
+    }
 }
 

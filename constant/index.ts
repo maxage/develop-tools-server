@@ -51,3 +51,4 @@ export const ZHIHU_API = process.env.ZHIHU_API
 export const CLS_API = process.env.CLS_API
 export const COOLAPK_API= process.env.COOLAPK_API
 export const HUPU_API = process.env.HUPU_API
+export const JUEJIN_API = process.env.JUEJIN_API

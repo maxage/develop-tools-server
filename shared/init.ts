@@ -29,6 +29,7 @@ import {zhihu} from "./zhihu";
 import {telegraph} from "./cls";
 import {coolapk} from "./coolapk.ts";
 import {hupu} from "./hupu.ts";
+import {juejin} from "./juejin.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -104,5 +105,7 @@ export function initApis() {
     apiManager.registerApi("coolapk", coolapk);
     // 虎扑步行街
     apiManager.registerApi("hupu", hupu);
+    // 掘金
+    apiManager.registerApi("juejin", juejin);
     // 在这里添加其他 API 的注册
 }

@@ -30,6 +30,7 @@ declare global {
         type ZhiHuRes = import('shared').ZhiHuRes;
         type ClsTelegramRes = import('shared').ClsTelegramRes;
         type CoolapkRes = import('shared').CoolapkRes;
+        type JueJinRes = import('shared').JueJinRes;
     }
 }
 

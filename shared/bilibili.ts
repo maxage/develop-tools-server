@@ -47,7 +47,10 @@ export const bHotSearch = async () => {
                 title: k.show_name,
                 url: `${BLBL_SEARCH_PREFIX}${encodeURIComponent(k.keyword)}`,
                 extra: {
-                    icon: k.icon && proxyPicture(k.icon),
+                    icon: {
+                        url: k.icon && proxyPicture(k.icon),
+                        scale: 0.8,
+                    },
                 },
             } as tools.NewsItem))
         },
@@ -65,9 +68,14 @@ export const bHotVideo = async () => {
                 url: `${BLBL_VIDEO_PREFIX}${video.bvid}`,
                 pubDate: video.pubdate * 1000,
                 extra: {
-                    info: `${video.owner.name} · ${formatNumber(video.stat.view)}观看 · ${formatNumber(video.stat.like)}点赞`,
-                    hover: video.desc,
-                    icon: proxyPicture(video.pic),
+                    video: {
+                        info: `${video.owner.name} · ${formatNumber(video.stat.view)}观看 · ${formatNumber(video.stat.like)}点赞`,
+                        duration: video.duration ? `${Math.floor(video.duration / 60)}:${(video.duration % 60).toString().padStart(2, '0')}` : undefined,
+                    },
+                    thumbnail: {
+                        hover: video.desc,
+                        url: proxyPicture(video.pic),
+                    }
                 },
             } as tools.NewsItem))
         },
@@ -85,9 +93,14 @@ export const bRanking = async () => {
                 url: `${BLBL_VIDEO_PREFIX}${video.bvid}`,
                 pubDate: video.pubdate * 1000,
                 extra: {
-                    info: `${video.owner.name} · ${formatNumber(video.stat.view)}观看 · ${formatNumber(video.stat.like)}点赞`,
-                    hover: video.desc,
-                    icon: proxyPicture(video.pic),
+                    video: {
+                        info: `${video.owner.name} · ${formatNumber(video.stat.view)}观看 · ${formatNumber(video.stat.like)}点赞`,
+                        duration: video.duration ? `${Math.floor(video.duration / 60)}:${(video.duration % 60).toString().padStart(2, '0')}` : undefined,
+                    },
+                    thumbnail: {
+                        hover: video.desc,
+                        url: proxyPicture(video.pic),
+                    }
                 },
             } as tools.NewsItem))
         },
