@@ -6,6 +6,7 @@
     "start": "tsx ./bin/www.ts"
   },
   "dependencies": {
+    "@jixun/qmweb-sign": "^2.0.3",
     "@types/md5": "^2.3.5",
     "axios": "^1.8.4",
     "cheerio": "^1.0.0",

@@ -31,6 +31,7 @@ import {coolapk} from "./coolapk.ts";
 import {hupu, hupuLOL} from "./hupu.ts";
 import {juejin} from "./juejin.ts";
 import {douban} from "./douban.ts";
+import {kugou, qqMusic} from "./music.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -114,5 +115,9 @@ export function initApis() {
     apiManager.registerApi("douban", douban);
     // 百度电视剧
     apiManager.registerApi("bd_tv", baiduTeleplay);
+    // 酷狗音乐
+    apiManager.registerApi("kugou", kugou);
+    // qq音乐
+    apiManager.registerApi("qq_music", qqMusic);
     // 在这里添加其他 API 的注册
 }

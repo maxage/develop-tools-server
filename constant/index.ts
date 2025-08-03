@@ -56,3 +56,4 @@ export const BAIDU_TELEPLAY_API = process.env.BAIDU_TELEPLAY_API
 export const DOUBAN_API = process.env.DOUBAN_API
 export const HUPU_LOL_API = process.env.HUPU_LOL_API
 export const HUPU_LOL_SCORE_API = process.env.HUPU_LOL_SCORE_API
+export const KUGOU_API = process.env.KUGOU_API

@@ -551,5 +551,30 @@ declare module 'shared' {
             }[]
         }
     }
+
+    interface QQMusicRes {
+        req_1: {
+            data: {
+                data: {
+                    song: {
+                        "rank": number,
+                        "rankType": number,
+                        "rankValue": string,
+                        "recType": number,
+                        "songId": number,
+                        "vid": string,
+                        "albumMid": string,
+                        "title": string,
+                        "singerName": string,
+                        "singerMid": string,
+                        "songType": number,
+                        "uuidCnt": number,
+                        "cover": string,
+                        "mvid": number
+                    }[]
+                }
+            }
+        }
+    }
 }
 

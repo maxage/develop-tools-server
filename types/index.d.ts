@@ -36,6 +36,7 @@ declare global {
         type BaiduTeleplayRes = import('shared').BaiduTeleplayRes;
         type HuPuLOLRes = import('shared').HuPuLOLRes;
         type HuPuLoLScoreRes = import('shared').HuPuLoLScoreRes;
+        type QQMusicRes = import('shared').QQMusicRes;
     }
 }
 
