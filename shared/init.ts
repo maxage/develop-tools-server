@@ -1,6 +1,6 @@
 import {apiManager} from '../manager';
 import {_36kr} from './_36kr';
-import {baidu} from './baidu';
+import {baidu, baiduTeleplay} from './baidu';
 import {bHotSearch, bHotVideo, bRanking} from "./bilibili";
 import {referenceMessage} from "./cankaoxiaoxi";
 import {douyin} from "./douyin";
@@ -30,6 +30,7 @@ import {telegraph} from "./cls";
 import {coolapk} from "./coolapk.ts";
 import {hupu} from "./hupu.ts";
 import {juejin} from "./juejin.ts";
+import {douban} from "./douban.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -107,5 +108,9 @@ export function initApis() {
     apiManager.registerApi("hupu", hupu);
     // 掘金
     apiManager.registerApi("juejin", juejin);
+    // 豆瓣
+    apiManager.registerApi("douban", douban);
+    // 百度电视剧
+    apiManager.registerApi("bd_tv", baiduTeleplay); // 暂未实现
     // 在这里添加其他 API 的注册
 }

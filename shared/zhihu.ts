@@ -18,5 +18,5 @@ export const zhihu = async () => {
                 },
                 url: k.target.link.url,
             }
-        })
+        }) as tools.NewsItem[];
 }

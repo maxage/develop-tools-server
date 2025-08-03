@@ -19,5 +19,5 @@ export const toutiao = async () => {
                     },
                 },
             }
-        })
+        }) as tools.NewsItem[];
 }

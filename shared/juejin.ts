@@ -1,6 +1,10 @@
 import axios from "axios";
 import {JUEJIN_API} from "../constant";
+
 export const juejin = async () => {
+    if (!JUEJIN_API) {
+        throw new Error("JueJin API is not set");
+    }
     const res: shared.JueJinRes = (await axios.get(JUEJIN_API, {
         headers: {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
@@ -16,7 +20,6 @@ export const juejin = async () => {
                 collect: item.content_counter.collect,
                 like: item.content_counter.like,
             }
-        }
+        } as tools.NewsItem;
     });
 }
-juejin()

@@ -12,12 +12,13 @@ declare module 'tools' {
             diff?: number
             icon?: false | string | {
                 url: string
-                scale: number
+                scale?: number
             }
             rank?: number // 排名
             [key: string]: any // 其他属性,用于扩展
         }
     }
+
     export interface RSSInfo {
         title: string
         description: string
@@ -26,6 +27,7 @@ declare module 'tools' {
         updatedTime: string
         items: RSSItem[]
     }
+
     export interface RSSItem {
         title: string
         description: string

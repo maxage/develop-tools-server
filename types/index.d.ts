@@ -31,6 +31,8 @@ declare global {
         type ClsTelegramRes = import('shared').ClsTelegramRes;
         type CoolapkRes = import('shared').CoolapkRes;
         type JueJinRes = import('shared').JueJinRes;
+        type DouBanRes = import('shared').DouBanRes;
+        type BaiduTeleplayRes = import('shared').BaiduTeleplayRes;
     }
 }
 

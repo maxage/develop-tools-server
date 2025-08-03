@@ -441,5 +441,58 @@ declare module 'shared' {
             user_interact: [Object]
         }[]
     }
+
+    interface DouBanRes {
+        data: {
+            subject_collection_items: {
+                card_subtitle: string
+                title: string
+                release_date: string
+                url: string
+                cover: {
+                    url: string
+                    width: number
+                    height: number
+                }
+                pic: {
+                    large: string
+                    normal: string
+                }
+                rating: {
+                    count: number
+                    value: number
+                }
+                rank_value: number
+                id: string
+                related_search_terms?: {
+                    name: string
+                }[]
+                comments: {
+                    comment: string
+                    user: {
+                        name: string
+                        avatar: string
+                    }
+                }[]
+            }[]
+        }
+    }
+
+    interface BaiduTeleplayRes {
+        cards: {
+            component: string
+            content: {
+                word: string
+                rawUrl: string
+                desc?: string
+                index: number
+                hotScore?: number
+                url: string
+                hotChange?: string
+                show: Array<string>
+                img: string
+            }[]
+        }[]
+    }
 }
 

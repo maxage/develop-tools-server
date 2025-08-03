@@ -52,3 +52,5 @@ export const CLS_API = process.env.CLS_API
 export const COOLAPK_API= process.env.COOLAPK_API
 export const HUPU_API = process.env.HUPU_API
 export const JUEJIN_API = process.env.JUEJIN_API
+export const BAIDU_TELEPLAY_API = process.env.BAIDU_TELEPLAY_API
+export const DOUBAN_API = process.env.DOUBAN_API
