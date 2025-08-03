@@ -19,6 +19,30 @@ declare module 'tools' {
         }
     }
 
+    export interface MatchItem {
+        matchName: string
+        matchStatus: string
+        matchStartTimeStamp: number
+        memberInfos: {
+            memberName: string
+            memberId: string
+            memberBaseScore: string
+            memberLogo: string
+        }[],
+        totalScore: {
+            teamId: string
+            teamName: string | undefined
+            playerInfo: {
+                "playerId": number,
+                "playerName": string,
+                "playerScore": number,
+                "playerScoreNum": number,
+                "playerLocation": string,
+                "isSubstitution": boolean
+            }[]
+        }[]
+    }
+
     export interface RSSInfo {
         title: string
         description: string

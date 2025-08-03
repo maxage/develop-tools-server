@@ -28,7 +28,7 @@ import {zaobao} from "./zaobao";
 import {zhihu} from "./zhihu";
 import {telegraph} from "./cls";
 import {coolapk} from "./coolapk.ts";
-import {hupu} from "./hupu.ts";
+import {hupu, hupuLOL} from "./hupu.ts";
 import {juejin} from "./juejin.ts";
 import {douban} from "./douban.ts";
 
@@ -106,11 +106,13 @@ export function initApis() {
     apiManager.registerApi("coolapk", coolapk);
     // 虎扑步行街
     apiManager.registerApi("hupu", hupu);
+    // 虎扑LOL
+    apiManager.registerApi("hupu_lol", hupuLOL);
     // 掘金
     apiManager.registerApi("juejin", juejin);
     // 豆瓣
     apiManager.registerApi("douban", douban);
     // 百度电视剧
-    apiManager.registerApi("bd_tv", baiduTeleplay); // 暂未实现
+    apiManager.registerApi("bd_tv", baiduTeleplay);
     // 在这里添加其他 API 的注册
 }

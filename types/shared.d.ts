@@ -494,5 +494,62 @@ declare module 'shared' {
             }[]
         }[]
     }
+
+    interface HuPuLOLRes {
+        result: {
+            components: {
+                code: string
+                data: {
+                    matchInfo: {
+                        businessType: string,
+                        subMatchBusinessType: string,
+                        matchId: string,
+                        uniqueKey: string,
+                        matchType: string,
+                        matchStatus: 'INPROGRESS' | 'COMPLETED' | 'NOTSTARTED',
+                        matchStatusDesc: string,
+                        matchStartTimeStamp: string,
+                        liveRoomLink: string,
+                        againstInfo: {
+                            memberInfos: {
+                                "memberName": string,
+                                "memberLogo": string,
+                                "memberBaseScore": string,
+                                "memberExtraScore": string,
+                                "memberBigScore": string,
+                                "memberId": string,
+                                "memberType": string,
+                                "memberDesc": string
+                            }[], winnerMemberId: string
+                        },
+                        midGameStageInfo: { midGameStage: string, extraGameStageInfo: string },
+                        lastReqTimeStamp: number,
+                        matchName: string,
+                        scoreCountText: string,
+                        textStreamInfo: string,
+                        recommendDesc: string,
+                        itemId: string
+                    }[]
+                }
+            }[]
+        }
+    }
+
+    interface HuPuLoLScoreRes {
+        data: {
+            teamScoreInfo: {
+                teamId: string
+                home: boolean
+                playerInfo: {
+                    "playerId": number,
+                    "playerName": string,
+                    "playerScore": number,
+                    "playerScoreNum": number,
+                    "playerLocation": string,
+                    "isSubstitution": boolean
+                }[]
+            }[]
+        }
+    }
 }
 

@@ -54,3 +54,5 @@ export const HUPU_API = process.env.HUPU_API
 export const JUEJIN_API = process.env.JUEJIN_API
 export const BAIDU_TELEPLAY_API = process.env.BAIDU_TELEPLAY_API
 export const DOUBAN_API = process.env.DOUBAN_API
+export const HUPU_LOL_API = process.env.HUPU_LOL_API
+export const HUPU_LOL_SCORE_API = process.env.HUPU_LOL_SCORE_API

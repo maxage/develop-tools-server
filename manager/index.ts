@@ -1,12 +1,12 @@
 export class ApiManager {
 
-    private readonly ApiMap: Record<string, (...args: any[]) => Promise<Array<tools.NewsItem>>>;
+    private readonly ApiMap: Record<string, (...args: any[]) => Promise<Array<tools.NewsItem | tools.MatchItem>>>;
 
     constructor() {
         this.ApiMap = {};
     }
 
-    getApi(apiName: string): (...args: any[]) => Promise<Array<tools.NewsItem>> {
+    getApi(apiName: string): (...args: any[]) => Promise<Array<tools.NewsItem | tools.MatchItem>> {
         if (this.ApiMap[apiName]) {
             return this.ApiMap[apiName];
         } else {
@@ -14,7 +14,7 @@ export class ApiManager {
         }
     }
 
-    registerApi(apiName: string, apiFunction: (...args: any[]) => Promise<Array<tools.NewsItem>>) {
+    registerApi(apiName: string, apiFunction: (...args: any[]) => Promise<Array<tools.NewsItem | tools.MatchItem>>) {
         this.ApiMap[apiName] = apiFunction;
     }
 }

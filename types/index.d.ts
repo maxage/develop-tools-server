@@ -2,6 +2,7 @@
 declare global {
     namespace tools {
         type NewsItem = import('tools').NewsItem;
+        type MatchItem = import('tools').MatchItem;
         type RSSInfo = import('tools').RSSInfo;
         type RSSItem = import('tools').RSSItem;
     }
@@ -33,6 +34,8 @@ declare global {
         type JueJinRes = import('shared').JueJinRes;
         type DouBanRes = import('shared').DouBanRes;
         type BaiduTeleplayRes = import('shared').BaiduTeleplayRes;
+        type HuPuLOLRes = import('shared').HuPuLOLRes;
+        type HuPuLoLScoreRes = import('shared').HuPuLoLScoreRes;
     }
 }
 

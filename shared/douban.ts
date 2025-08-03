@@ -26,7 +26,7 @@ export const douban = async () => {
                     count: item.rating.count,
                     value: item.rating.value,
                 },
-                comment: {
+                comments: {
                     content: item.comments ? item.comments[0].comment : "",
                     avatar: item.comments ? item.comments[0].user.avatar : "",
                 }
