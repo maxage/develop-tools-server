@@ -576,5 +576,65 @@ declare module 'shared' {
             }
         }
     }
+
+    interface CSDNRes {
+        data: {
+            "www-info-list-new": {
+                componentId: string
+                info: {
+                    list: {
+                        "id": number,
+                        "itemId": number,
+                        "title": string,
+                        "summary": string
+                        "cover": string
+                        "isTop": number,
+                        "channel": number,
+                        "editTime": string,
+                        "viewCount": string,
+                        "commentCount": string,
+                        "diggCount": string,
+                        "favoriteCount": string,
+                        "publish": string,
+                        "url": string,
+                        "username": string,
+                        "nickname": string,
+                        "avatar": string,
+                        "blogUrl": string,
+                        "timestamp": 1753837036000
+                    }[]
+                }
+            }
+        }
+    }
+
+    interface SSPAIRes {
+        data: {
+            id: number,
+            title: string
+            banner: string,
+            summary: string,
+            comment_count: number,
+            like_count: number,
+            view_count: number,
+            free: boolean,
+            released_time: number,
+            author: {
+                nickname: string
+            },
+        }[]
+    }
+
+    interface JQKARes {
+        data: {
+            list: {
+                id: number
+                title: string
+                digest: string
+                url: string
+                rtime: number
+            }[]
+        }
+    }
 }
 

@@ -57,3 +57,6 @@ export const DOUBAN_API = process.env.DOUBAN_API
 export const HUPU_LOL_API = process.env.HUPU_LOL_API
 export const HUPU_LOL_SCORE_API = process.env.HUPU_LOL_SCORE_API
 export const KUGOU_API = process.env.KUGOU_API
+export const CSDN_API = process.env.CSDN_API
+export const SSPAI_API = process.env.SSPAI_API
+export const JQKA_API = process.env.JQKA_API

@@ -37,6 +37,9 @@ declare global {
         type HuPuLOLRes = import('shared').HuPuLOLRes;
         type HuPuLoLScoreRes = import('shared').HuPuLoLScoreRes;
         type QQMusicRes = import('shared').QQMusicRes;
+        type CSDNRes = import('shared').CSDNRes;
+        type SSPAIRes = import('shared').SSPAIRes;
+        type JQKARes = import('shared').JQKARes;
     }
 }
 

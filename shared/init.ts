@@ -32,6 +32,9 @@ import {hupu, hupuLOL} from "./hupu.ts";
 import {juejin} from "./juejin.ts";
 import {douban} from "./douban.ts";
 import {kugou, qqMusic} from "./music.ts";
+import {csdn} from "./csdn.ts";
+import {sspai} from "./sspai.ts";
+import {jqka} from "./jqka.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -119,5 +122,11 @@ export function initApis() {
     apiManager.registerApi("kugou", kugou);
     // qq音乐
     apiManager.registerApi("qq_music", qqMusic);
+    // csdn
+    apiManager.registerApi("csdn", csdn);
+    // sspai
+    apiManager.registerApi("sspai", sspai);
+    // 同花顺
+    apiManager.registerApi("jqka", jqka);
     // 在这里添加其他 API 的注册
 }
