@@ -35,6 +35,8 @@ import {kugou, qqMusic} from "./music.ts";
 import {csdn} from "./csdn.ts";
 import {sspai} from "./sspai.ts";
 import {jqka} from "./jqka.ts";
+import {_51cto} from "./_51cto.ts";
+import {dongchediHot, dongchediNews} from "./dongchedi.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -128,5 +130,11 @@ export function initApis() {
     apiManager.registerApi("sspai", sspai);
     // 同花顺
     apiManager.registerApi("jqka", jqka);
+    // 51cto
+    apiManager.registerApi("_51cto", _51cto);
+    // 懂车帝热搜
+    apiManager.registerApi("dcd_hot", dongchediHot);
+    // 懂车帝资讯
+    apiManager.registerApi("dcd_news", dongchediNews);
     // 在这里添加其他 API 的注册
 }

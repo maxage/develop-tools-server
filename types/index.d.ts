@@ -40,6 +40,7 @@ declare global {
         type CSDNRes = import('shared').CSDNRes;
         type SSPAIRes = import('shared').SSPAIRes;
         type JQKARes = import('shared').JQKARes;
+        type DongCheDiRes = import('shared').DongCheDiRes;
     }
 }
 

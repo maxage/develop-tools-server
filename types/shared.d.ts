@@ -636,5 +636,29 @@ declare module 'shared' {
             }[]
         }
     }
+
+    interface DongCheDiRes {
+        props: {
+            pageProps: {
+                hotSearchList: {
+                    gid: string
+                    title: string
+                    is_hot: number
+                    score: number
+                    description: string
+                }[]
+                staticData: {
+                    news: {
+                        title: string
+                        publish_time: number
+                        unique_id: number
+                        unique_id_str: string
+                        has_video: boolean
+                        watch_or_read_count: number
+                    }[]
+                }
+            }
+        }
+    }
 }
 
