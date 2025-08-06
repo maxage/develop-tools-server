@@ -36,7 +36,7 @@ export const dongchediNews = async () => {
             title: item.title,
             url: item.has_video ? `https://www.dongchedi.com/video/${item.unique_id_str}` : `https://www.dongchedi.com/article/${item.unique_id_str}`,
             extra: {
-                date: item.publish_time
+                date: item.publish_time*1000
             }
         } as tools.NewsItem
     })
