@@ -1,6 +1,7 @@
 // Power by https://github.com/ourongxing/
 import axios, {AxiosResponse} from "axios";
 import {KAOPU_API} from "../constant";
+import dayjs from "dayjs/esm";
 
 export const kaopu = async () => {
     const res = await Promise.all([`${KAOPU_API}news_list_beta_hans_0.json`,
@@ -9,10 +10,10 @@ export const kaopu = async () => {
         return {
             id: k.link,
             title: k.title,
-            pubDate: k.pubDate,
             extra: {
                 hover: k.description,
                 info: k.publisher,
+                date: dayjs(k.pubDate).toDate().getTime()
             },
             url: k.link,
         }

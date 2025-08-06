@@ -12,6 +12,12 @@ export const tieba = async () => {
                 id: k.topic_id,
                 title: k.topic_name,
                 url: k.topic_url,
+                extra: {
+                    date: k.create_time * 1000
+                }
             } as tools.NewsItem
-        })
+        }).sort(
+            // @ts-ignore
+            (a, b) => b.extra.date - a.extra.date
+        )
 }

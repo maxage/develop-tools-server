@@ -3,6 +3,7 @@ import * as cheerio from "cheerio"
 import {parseRelativeDate} from "../utils";
 import axios from "axios";
 import {SOLIDOW_API} from "../constant";
+import dayjs from "dayjs/esm";
 
 export const solidot = async () => {
     if (!SOLIDOW_API) throw new Error("Missing SOLIDOW_API");
@@ -22,6 +23,9 @@ export const solidot = async () => {
                 title,
                 id: url,
                 pubDate: parseRelativeDate(date, "Asia/Shanghai").valueOf(),
+                extra: {
+                    date: dayjs(date).toDate().getTime()
+                },
             })
         }
     })

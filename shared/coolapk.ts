@@ -22,10 +22,15 @@ export const coolapk = async () => {
             url: `https://www.coolapk.com${i.url}`,
             extra: {
                 info: i.targetRow?.subTitle,
-                // date: new Date(i.dateline * 1000).getTime(),
+                date: new Date(i.dateline * 1000).getTime(),
             },
         } as tools.NewsItem;
-    });
+    }).sort(
+        (a, b) => {
+            // @ts-ignore
+            return b.extra?.date!! - a.extra?.date!!;
+        }
+    );
 
 }
 

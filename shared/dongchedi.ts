@@ -10,7 +10,6 @@ export const dongchediHot = async () => {
     const $ = load(response?.data)
     let nextdata = $("#__NEXT_DATA__");
     let parse: shared.DongCheDiRes = JSON.parse($(nextdata).text());
-    console.log(parse)
     return parse.props.pageProps.hotSearchList.map((item) => {
         return {
             id: item.gid,

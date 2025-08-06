@@ -10,8 +10,8 @@ export const jqka = async () => {
             title: item.title,
             url: item.url,
             extra: {
-                date: item.rtime,
-                desc:item.digest
+                date: item.rtime * 1000,
+                desc: item.digest
             }
         } as tools.NewsItem;
     })

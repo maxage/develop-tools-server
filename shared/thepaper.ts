@@ -12,6 +12,12 @@ export const thepaper = async () => {
                 title: k.name,
                 url: `${THEPAPER_DETAIL_API}${k.contId}`,
                 mobileUrl: `${THEPAPER_MOBILE_DETAIL_API}${k.contId}`,
+                extra: {
+                    date: k.pubTimeLong
+                }
             } as tools.NewsItem
-        })
+        }).sort(
+            // @ts-ignore
+            (a, b) => b.extra.date - a.extra.date
+        );
 }

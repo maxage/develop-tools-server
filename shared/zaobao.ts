@@ -5,6 +5,7 @@ import iconv from "iconv-lite"
 import {parseRelativeDate} from "../utils";
 import axios from "axios";
 import {ZAOBAO_API} from "../constant";
+import dayjs from "dayjs/esm";
 
 export const zaobao = async () => {
     const response: ArrayBuffer = (await axios.get(`${ZAOBAO_API}/realtime/`, {
@@ -25,6 +26,9 @@ export const zaobao = async () => {
                 title,
                 id: url,
                 pubDate: parseRelativeDate(date, "Asia/Shanghai").valueOf(),
+                extra:{
+                    date: dayjs(date).toDate().getTime()
+                }
             })
         }
     })

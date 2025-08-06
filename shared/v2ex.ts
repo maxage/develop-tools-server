@@ -1,6 +1,7 @@
 // Power by https://github.com/ourongxing/
 import axios, {AxiosResponse} from "axios";
 import {V2EX_API} from "../constant";
+import dayjs from "dayjs/esm";
 
 export const v2exShare = async () => {
     const res = await Promise.all(["create", "ideas", "programmer", "share"]
@@ -9,7 +10,7 @@ export const v2exShare = async () => {
         id: k.id,
         title: k.title,
         extra: {
-            date: k.date_modified ?? k.date_published,
+            date: dayjs(k.date_modified ?? k.date_published).toDate().getTime(),
         },
         url: k.url,
     } as tools.NewsItem)).sort((m, n) => m.extra?.date!! < n.extra?.date!! ? 1 : -1)

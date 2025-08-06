@@ -3,6 +3,7 @@ import * as cheerio from "cheerio"
 import {parseRelativeDate} from "../utils";
 import axios from "axios";
 import {IT_HOME_API} from "../constant";
+import dayjs from "dayjs/esm";
 
 export const ithome = async () => {
     if (!IT_HOME_API) {
@@ -25,10 +26,15 @@ export const ithome = async () => {
                     url,
                     title,
                     id: url,
-                    pubDate: parseRelativeDate(date, "Asia/Shanghai").valueOf(),
+                    extra: {
+                        date: dayjs(date).toDate().getTime(),
+                    }
                 })
             }
         }
     })
-    return news.sort((m, n) => n.pubDate! > m.pubDate! ? 1 : -1)
+    return news.sort((m, n) => {
+        // @ts-ignore
+        return n.extra.date! > m.extra.date! ? 1 : -1
+    })
 }

@@ -2,6 +2,7 @@
 import {parseRelativeDate} from "../utils";
 import axios from "axios";
 import {JIN10_API, JIN10_DETAIL_API} from "../constant";
+import dayjs from "dayjs/esm";
 
 export const jin10 = async () => {
     const timestamp = Date.now()
@@ -17,15 +18,15 @@ export const jin10 = async () => {
 
     return data.filter(k => (k.data.title || k.data.content) && !k.channel?.includes(5)).map((k) => {
         const text = (k.data.title || k.data.content)!.replace(/<\/?b>/g, "")
-        const [, title, desc] = text.match(/^【([^】]*)】(.*)$/) ?? []
+        const [title, desc] = text.match(/^【([^】]*)】(.*)$/) ?? []
         return {
             id: k.id,
             title: title ?? text,
-            pubDate: parseRelativeDate(k.time, "Asia/Shanghai").valueOf(),
             url: `${JIN10_DETAIL_API}${k.id}`,
             extra: {
                 hover: desc,
                 info: !!k.important && "✰",
+                date: dayjs(k.time).toDate().getTime(),
             },
         } as tools.NewsItem
     })
