@@ -37,6 +37,7 @@ import {sspai} from "./sspai.ts";
 import {jqka} from "./jqka.ts";
 import {_51cto} from "./_51cto.ts";
 import {dongchediHot, dongchediNews} from "./dongchedi.ts";
+import {fishpi} from "./fishpi.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -136,5 +137,7 @@ export function initApis() {
     apiManager.registerApi("dcd_hot", dongchediHot);
     // 懂车帝资讯
     apiManager.registerApi("dcd_news", dongchediNews);
+    // 摸鱼派
+    apiManager.registerApi("fishpi", fishpi);
     // 在这里添加其他 API 的注册
 }

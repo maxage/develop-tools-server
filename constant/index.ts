@@ -62,3 +62,5 @@ export const SSPAI_API = process.env.SSPAI_API
 export const JQKA_API = process.env.JQKA_API
 export const _51CTO_API = process.env._51CTO_API
 export const DONGCHEDI_API = process.env.DONGCHEDI_API
+export const FISHP_API = process.env.FISHP_API
+export const FISHP_API_COOKIE = process.env.FISHP_API_COOKIE
