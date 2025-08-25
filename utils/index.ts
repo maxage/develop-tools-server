@@ -535,3 +535,13 @@ export async function myCrypto(s: string, algorithm: Algorithm) {
     const hashArray = Array.from(new Uint8Array(hashBuffer))
     return hashArray.map(b => b.toString(16).padStart(2, "0")).join("")
 }
+
+export const sanitizeJsonString = (jsonString: string) => {
+    // 正则表达式查找一个反斜杠 `\`，条件是它后面不能跟着任何一个
+    // 合法的JSON转义字符 (" \ / b f n r t u)。
+    // 使用 'g' 标志来替换所有匹配项。
+    const regex = /\\(?!["\\/bfnrtu])/g;
+
+    // 将所有匹配到的非法反斜杠替换为双反斜杠 `\\`
+    return jsonString.replace(regex, '\\\\');
+}

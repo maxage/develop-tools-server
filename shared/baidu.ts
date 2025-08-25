@@ -1,5 +1,6 @@
 import axios from "axios";
-import {BAIDU_API,BAIDU_TELEPLAY_API} from "../constant";
+import {BAIDU_API, BAIDU_TELEPLAY_API} from "../constant";
+import {sanitizeJsonString} from "../utils";
 
 export const baidu = async () => {
     if (!BAIDU_API) {
@@ -32,7 +33,7 @@ export const baiduTeleplay = async () => {
     if (!jsonStr) {
         throw new Error("Failed to parse Baidu Teleplay data");
     }
-    const data: shared.BaiduTeleplayRes = JSON.parse(jsonStr[1]);
+    const data: shared.BaiduTeleplayRes = JSON.parse(sanitizeJsonString(jsonStr[1]));
     return data.cards[0].content.map((k) => {
         return {
             id: k.word,
@@ -50,3 +51,4 @@ export const baiduTeleplay = async () => {
         } as tools.NewsItem;
     })
 }
+
