@@ -41,6 +41,7 @@ declare global {
         type SSPAIRes = import('shared').SSPAIRes;
         type JQKARes = import('shared').JQKARes;
         type DongCheDiRes = import('shared').DongCheDiRes;
+        type AutoHomeRankRes = import('shared').AutoHomeRankRes;
     }
 }
 

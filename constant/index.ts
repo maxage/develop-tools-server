@@ -64,3 +64,5 @@ export const _51CTO_API = process.env._51CTO_API
 export const DONGCHEDI_API = process.env.DONGCHEDI_API
 export const FISHP_API = process.env.FISHP_API
 export const FISHP_API_COOKIE = process.env.FISHP_API_COOKIE
+export const AUTOHOME_API = process.env.AUTOHOME_API
+export const AUTOHOME_RANK_API = process.env.AUTOHOME_RANK_API

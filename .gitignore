@@ -34,4 +34,4 @@ coverage
 data/**/*
 data/*
 package-lock.json
-package-lock.json
+.env

@@ -24,8 +24,6 @@ if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, {recursive: true});
 }
 
-// 仅在开发环境下启用跨域
-// if (process.env.NODE_ENV === 'development') {
 app.use((req: Request, res: Response, next: NextFunction): void => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -36,7 +34,6 @@ app.use((req: Request, res: Response, next: NextFunction): void => {
     }
     next();
 });
-// }
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

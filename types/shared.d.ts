@@ -660,5 +660,15 @@ declare module 'shared' {
             }
         }
     }
+
+    interface AutoHomeRankRes {
+        result: {
+            bizId: number
+            title: string
+            subtitle: string | null
+            url: string
+            order: number
+        }[]
+    }
 }
 

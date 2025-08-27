@@ -38,6 +38,7 @@ import {jqka} from "./jqka.ts";
 import {_51cto} from "./_51cto.ts";
 import {dongchediHot, dongchediNews} from "./dongchedi.ts";
 import {fishpi} from "./fishpi.ts";
+import {autohome, autohomeRankArticle, autohomeRankHot, autohomeRankVideo} from "./autohome.ts";
 
 // 自动注册所有 API
 export function initApis() {
@@ -139,5 +140,13 @@ export function initApis() {
     apiManager.registerApi("dcd_news", dongchediNews);
     // 摸鱼派
     apiManager.registerApi("fishpi", fishpi);
+    // 汽车之家
+    apiManager.registerApi("autohome", autohome);
+    // 汽车之家-热搜
+    apiManager.registerApi("autohome_hot", autohomeRankHot);
+    // 汽车之家-热文
+    apiManager.registerApi("autohome_article", autohomeRankArticle);
+    // 汽车之家-视频
+    apiManager.registerApi("autohome_video", autohomeRankVideo);
     // 在这里添加其他 API 的注册
 }
