@@ -13,7 +13,7 @@ export const kaopu = async () => {
             extra: {
                 hover: k.description,
                 info: k.publisher,
-                date: dayjs(k.pubDate).toDate().getTime()
+                date: dayjs.tz(k.pubDate, "Asia/Shanghai").valueOf()
             },
             url: k.link,
         }

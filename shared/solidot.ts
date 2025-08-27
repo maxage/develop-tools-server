@@ -24,7 +24,7 @@ export const solidot = async () => {
                 id: url,
                 pubDate: parseRelativeDate(date, "Asia/Shanghai").valueOf(),
                 extra: {
-                    date: dayjs(date).toDate().getTime()
+                    date: dayjs.tz(date, "Asia/Shanghai").valueOf()
                 },
             })
         }

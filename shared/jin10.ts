@@ -26,7 +26,7 @@ export const jin10 = async () => {
             extra: {
                 hover: desc,
                 info: !!k.important && "✰",
-                date: dayjs(k.time).toDate().getTime(),
+                date: dayjs.tz(k.time, "Asia/Shanghai").valueOf(),
             },
         } as tools.NewsItem
     })

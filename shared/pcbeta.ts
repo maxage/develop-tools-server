@@ -18,7 +18,7 @@ export const pcbetaWin = async () => {
         id: item.link,
         pubDate: dayjs(item.created).tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss"),
         extra: {
-            date: dayjs(item.created).toDate().getTime()
+            date: dayjs.tz(item.created, "Asia/Shanghai").valueOf()
         },
     } as tools.NewsItem))
 }
@@ -33,7 +33,7 @@ export const pcbetaWin11 = async () => {
         id: item.link,
         pubDate: dayjs(item.created).tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss"),
         extra: {
-            date: dayjs(item.created).toDate().getTime()
+            date: dayjs.tz(item.created, "Asia/Shanghai").valueOf()
         },
     } as tools.NewsItem))
 }

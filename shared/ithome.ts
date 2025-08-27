@@ -13,6 +13,7 @@ export const ithome = async () => {
     const $ = cheerio.load(response)
     const $main = $("#list > div.fl > ul > li")
     const news: tools.NewsItem[] = []
+    const timeZone = 'Asia/Shanghai';
     $main.each((_, el) => {
         const $el = $(el)
         const $a = $el.find("a.t")
@@ -27,7 +28,7 @@ export const ithome = async () => {
                     title,
                     id: url,
                     extra: {
-                        date: dayjs(date).toDate().getTime(),
+                        date: dayjs.tz(date, timeZone).valueOf(),
                     }
                 })
             }

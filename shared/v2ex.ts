@@ -10,7 +10,7 @@ export const v2exShare = async () => {
         id: k.id,
         title: k.title,
         extra: {
-            date: dayjs(k.date_modified ?? k.date_published).toDate().getTime(),
+            date: dayjs.tz(k.date_modified ?? k.date_published, "Asia/Shanghai").valueOf(),
         },
         url: k.url,
     } as tools.NewsItem)).sort((m, n) => m.extra?.date!! < n.extra?.date!! ? 1 : -1)
