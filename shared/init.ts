@@ -28,7 +28,18 @@ import {zaobao} from "./zaobao";
 import {zhihu} from "./zhihu";
 import {telegraph} from "./cls";
 import {coolapk} from "./coolapk.ts";
-import {hupu, hupuLOL} from "./hupu.ts";
+import {
+    hupu,
+    hupuCBA,
+    hupuCSL,
+    hupuEWC,
+    hupuFIFA,
+    hupuKOG,
+    hupuLOL,
+    hupuNBA,
+    hupuSports,
+    hupuValorant
+} from "./hupu.ts";
 import {juejin} from "./juejin.ts";
 import {douban} from "./douban.ts";
 import {kugou, qqMusic} from "./music.ts";
@@ -132,6 +143,22 @@ export function initApis() {
     apiManager.registerApi("hupu", hupu);
     // 虎扑LOL
     apiManager.registerApi("hupu_lol", hupuLOL);
+    // 虎扑FIFA
+    apiManager.registerApi("hupu_fifa", hupuFIFA);
+    // 虎扑NBA
+    apiManager.registerApi("hupu_nba", hupuNBA);
+    // 虎扑CBA
+    apiManager.registerApi("hupu_cba", hupuCBA);
+    // 虎扑CSL
+    apiManager.registerApi("hupu_csl", hupuCSL);
+    // 虎扑KOG
+    apiManager.registerApi("hupu_kog", hupuKOG);
+    // 虎扑valorant
+    apiManager.registerApi("hupu_valorant", hupuValorant);
+    // 虎扑ewcsports
+    apiManager.registerApi("hupu_ewcsports", hupuEWC);
+    // 虎扑体育比赛
+    apiManager.registerApi("hupu_sports", hupuSports);
     // 掘金
     apiManager.registerApi("juejin", juejin);
     // 豆瓣

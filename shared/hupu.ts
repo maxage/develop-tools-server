@@ -46,10 +46,7 @@ export const hupu = async () => {
 
 
 export const hupuLOL = async () => {
-    if (!HUPU_LOL_API) {
-        throw new Error("HUPU_LOL_API is not set");
-    }
-    const res: shared.HuPuLOLRes = (await axios.get(HUPU_LOL_API)).data
+    const res: shared.HuPuLOLRes = await baseFunction("20")
     let match = res.result.components.filter(item => item.code === "match")[0];
     if (!match) {
         throw new Error("No match data found");
@@ -94,8 +91,74 @@ export const hupuLOL = async () => {
     return results;
 }
 
+export const hupuFIFA = async () => {
+    return await baseMatch("18");
+}
+export const hupuNBA = async () => {
+    return await baseMatch("16");
+}
+export const hupuCBA = async () => {
+    return await baseMatch("17");
+}
+export const hupuCSL = async () => {
+    return await baseMatch("19");
+}
+export const hupuKOG = async () => {
+    return await baseMatch("21");
+}
+export const hupuValorant = async () => {
+    return await baseMatch("22");
+}
+export const hupuEWC = async () => {
+    return await baseMatch("23");
+}
+export const hupuSports = async () => {
+    return await baseMatch("24");
+}
 
-export const hupuLoLScore = async (
+const baseMatch = async (pageId: string) => {
+    if (!HUPU_LOL_API) {
+        throw new Error("HUPU_LOL_API is not set");
+    }
+    const res: shared.HuPuLOLRes = await baseFunction(pageId)
+    let match = res.result.components.filter(item => item.code === "match")[0];
+
+    if (!match) {
+        throw new Error("No match data found");
+    }
+    const results: tools.MatchItem[] = [];
+    match.data.matchInfo.forEach((item: any) => {
+        results.push({
+            matchName: item.matchName || "",
+            matchStatus: item.matchStatusDesc || "",
+            matchStartTimeStamp: item.matchStartTimeStamp || 0,
+            memberInfos: item.againstInfo.memberInfos.map((matchInfo: {
+                memberName: any;
+                memberId: any;
+                memberBaseScore: any;
+                memberLogo: string;
+            }) => {
+                return {
+                    memberName: matchInfo.memberName,
+                    memberId: matchInfo.memberId,
+                    memberBaseScore: matchInfo.memberBaseScore,
+                    memberLogo: matchInfo.memberLogo ? proxyPicture(matchInfo.memberLogo) : "",
+                }
+            }),
+        } as tools.MatchItem);
+    });
+    return results;
+}
+
+const baseFunction = async (pageId: string) => {
+    if (!HUPU_LOL_SCORE_API) {
+        throw new Error("HUPU_LOL_SCORE_API is not set");
+    }
+    const res: shared.HuPuLOLRes = (await axios.get(`${HUPU_LOL_API}&pageId=${pageId}`)).data;
+    return res;
+}
+
+const hupuLoLScore = async (
     matchId: string,
     teamMap: Map<string, string> = new Map<string, string>()
 ) => {
