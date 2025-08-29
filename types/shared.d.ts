@@ -670,5 +670,53 @@ declare module 'shared' {
             order: number
         }[]
     }
+
+    interface DPYTRes {
+        data: {
+            count: number
+            list: {
+                symbol: string
+                net_profit_cagr: number | null
+                north_net_inflow: number | null
+                ps: number | null
+                type: number
+                percent: number
+                has_follow: boolean
+                tick_size: number
+                pb_ttm: number | null
+                float_shares: number
+                current: number
+                amplitude: number
+                pcf: number | null
+                current_year_percent: number
+                float_market_capital: number
+                north_net_inflow_time: number | null
+                market_capital: number
+                dividend_yield: number
+                lot_size: number
+                roe_ttm: number
+                total_percent: number
+                percent5m: number
+                income_cagr: number
+                amount: number
+                chg: number
+                issue_date_ts: number
+                eps: number
+                main_net_inflows: number
+                volume: number
+                volume_ratio: number
+                pb: number
+                followers: number
+                turnover_rate: number
+                mapping_quote_current: number | null
+                first_percent: number
+                name: string
+                pe_ttm: number
+                dual_counter_mapping_symbol: string | null
+                total_shares: number
+                limitup_days: number
+            }[]
+        }
+    }
 }
 

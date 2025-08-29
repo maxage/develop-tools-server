@@ -23,7 +23,7 @@ import {toutiao} from "./toutiao";
 import {v2exShare} from "./v2ex";
 import {wallStreetCnHot, wallStreetCnLive, wallStreetCnNews} from "./wallstreetcn";
 import {weibo} from "./weibo";
-import {hotstock} from "./xueqiu";
+import {hotstock, stockCyb, stockHk, stockSha, stockShb, stockSza, stockSzb, stockUs, stockZxb} from "./xueqiu";
 import {zaobao} from "./zaobao";
 import {zhihu} from "./zhihu";
 import {telegraph} from "./cls";
@@ -104,6 +104,22 @@ export function initApis() {
     apiManager.registerApi("weibo", weibo)
     // 雪球
     apiManager.registerApi("hotstock", hotstock)
+    // 雪球沪A
+    apiManager.registerApi("stock_sha", stockSha)
+    // 雪球沪B
+    apiManager.registerApi("stock_shb", stockShb)
+    // 雪球深A
+    apiManager.registerApi("stock_sza", stockSza)
+    // 雪球深B
+    apiManager.registerApi("stock_szb", stockSzb)
+    // 雪球创业板
+    apiManager.registerApi("stock_cyb", stockCyb)
+    // 雪球中小板
+    apiManager.registerApi("stock_zxb", stockZxb)
+    // 雪球港股
+    apiManager.registerApi("stock_hk", stockHk)
+    // 雪球美股
+    apiManager.registerApi("stock_us", stockUs)
     // 联合早报
     apiManager.registerApi("zaobao", zaobao)
     // 知乎

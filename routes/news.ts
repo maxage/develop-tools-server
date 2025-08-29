@@ -14,7 +14,9 @@ router.get('/', (req: Request, res: Response, next: NextFunction): void => {
         return;
     }
 
-    apiManager.getApi(platform)()
+    apiManager.getApi(platform)(
+        {...req.query}
+    )
         .then(data => {
             res.json(ApiResponse.success(data));
         })

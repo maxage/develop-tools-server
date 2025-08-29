@@ -66,3 +66,4 @@ export const FISHP_API = process.env.FISHP_API
 export const FISHP_API_COOKIE = process.env.FISHP_API_COOKIE
 export const AUTOHOME_API = process.env.AUTOHOME_API
 export const AUTOHOME_RANK_API = process.env.AUTOHOME_RANK_API
+export const STOCK_SCREENER_API = process.env.STOCK_SCREENER_API
