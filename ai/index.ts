@@ -135,8 +135,7 @@ ${JSON.stringify(items)}
         timeout: 600000,
     }).then(res => {
         // 生成的文件名
-        const fileName = dayjs().add(-1, "hour")
-            .format("YYYY-MM-DD-HH") + ".txt";
+        const fileName = dayjs().format("YYYY-MM-DD-HH") + ".txt";
         // 确保目录存在
         const dir = path.join(__dirname, `../data/summary/${category}`);
         if (!fs.existsSync(dir)) {
@@ -210,7 +209,7 @@ const processCategorySummary = async (category: { category: string, name: string
 };
 
 const CronJob = require('cron').CronJob;
-const job = new CronJob('11 * * * *', async () => {
+const job = new CronJob('55 * * * *', async () => {
     try {
         console.log('开始执行AI摘要定时任务...');
         const startTime = Date.now();

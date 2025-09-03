@@ -35,3 +35,4 @@ data/**/*
 data/*
 package-lock.json
 .env
+test/*
