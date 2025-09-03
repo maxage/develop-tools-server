@@ -25,4 +25,25 @@ router.get('/', (req: Request, res: Response, next: NextFunction): void => {
         });
 });
 
+/**
+ * 获取AI总结列表
+ */
+router.get('/ai', (req: Request, res: Response, next: NextFunction): void => {
+    let category = req.query.category as string | undefined;
+    if (!category) {
+        category = 'hot';
+    }
+
+    apiManager.getApi('ai-summary')(
+        {...req.query, category}
+    )
+        .then(data => {
+            res.json(ApiResponse.success(data));
+        })
+        .catch(error => {
+            res.json(ApiResponse.error(error.message || "获取数据失败", 500));
+        });
+});
+
+
 export = router;

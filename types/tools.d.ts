@@ -5,6 +5,7 @@ declare module 'tools' {
         url: string
         mobileUrl?: string
         pubDate?: number | string
+        source?: string
         extra?: {
             hover?: string
             date?: number | string

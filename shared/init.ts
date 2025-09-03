@@ -50,9 +50,12 @@ import {_51cto} from "./_51cto.ts";
 import {dongchediHot, dongchediNews} from "./dongchedi.ts";
 import {fishpi} from "./fishpi.ts";
 import {autohome, autohomeRankArticle, autohomeRankHot, autohomeRankVideo} from "./autohome.ts";
+import {aiSummary} from "../ai";
 
 // 自动注册所有 API
 export function initApis() {
+    // 总结
+    apiManager.registerApi('ai-summary', aiSummary);
     // 36氪
     apiManager.registerApi('_36kr', _36kr);
     // 百度

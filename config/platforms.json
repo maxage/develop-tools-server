@@ -1,204 +1,108 @@
 [
-    {
-        "platform": "_36kr",
-        "label": "36氪",
-        "list": [
-            { "platform": "_36kr", "label": "36氪" }
-        ]
-    },
-    {
-        "platform": "baidu",
-        "label": "百度热搜",
-        "list": [
-            { "platform": "baidu", "label": "百度热搜" }
-        ]
-    },
-    {
-        "platform": "bilibili",
-        "label": "哔哩哔哩",
-        "list": [
-            { "platform": "b_hot_search", "label": "热搜" },
-            { "platform": "b_hot_video", "label": "视频" },
-            { "platform": "b_rank", "label": "排行榜" }
-        ]
-    },
-    {
-        "platform": "cankaoxiaoxi",
-        "label": "参考消息",
-        "list": [
-            { "platform": "cankaoxiaoxi", "label": "参考消息" }
-        ]
-    },
-    {
-        "platform": "douyin",
-        "label": "抖音热搜",
-        "list": [
-            { "platform": "douyin", "label": "抖音热搜" }
-        ]
-    },
-    {
-        "platform": "gelonghui",
-        "label": "格隆汇",
-        "list": [
-            { "platform": "gelonghui", "label": "格隆汇" }
-        ]
-    },
-    {
-        "platform": "guoheboke",
-        "label": "果核剥壳",
-        "list": [
-            { "platform": "guoheboke", "label": "果核剥壳" }
-        ]
-    },
-    {
-        "platform": "github",
-        "label": "GitHub趋势",
-        "list": [
-            { "platform": "github", "label": "GitHub趋势" }
-        ]
-    },
-    {
-        "platform": "ithome",
-        "label": "IT之家",
-        "list": [
-            { "platform": "ithome", "label": "IT之家" }
-        ]
-    },
-    {
-        "platform": "jin10",
-        "label": "金十",
-        "list": [
-            { "platform": "jin10", "label": "金十" }
-        ]
-    },
-    {
-        "platform": "kaopu",
-        "label": "靠谱",
-        "list": [
-            { "platform": "kaopu", "label": "靠谱" }
-        ]
-    },
-    {
-        "platform": "kuaishou",
-        "label": "快手",
-        "list": [
-            { "platform": "kuaishou", "label": "快手" }
-        ]
-    },
-    {
-        "platform": "linuxdo",
-        "label": "LinuxDo",
-        "list": [
-            { "platform": "linuxdo_hot", "label": "热搜" },
-            { "platform": "linuxdo_latest", "label": "最新" }
-        ]
-    },
-    {
-        "platform": "nowcoder",
-        "label": "牛客",
-        "list": [
-            { "platform": "nowcoder", "label": "牛客" }
-        ]
-    },
-    {
-        "platform": "pcbeta",
-        "label": "远景论坛",
-        "list": [
-            { "platform": "pcbeta_windows", "label": "Windows" },
-            { "platform": "pcbeta_win11", "label": "Windows11" }
-        ]
-    },
-    {
-        "platform": "smzdm",
-        "label": "什么值得买",
-        "list": [
-            { "platform": "smzdm", "label": "什么值得买" }
-        ]
-    },
-    {
-        "platform": "solidot",
-        "label": "奇客",
-        "list": [
-            { "platform": "solidot", "label": "奇客" }
-        ]
-    },
-    {
-        "platform": "sputniknewscn",
-        "label": "俄罗斯卫星通讯社",
-        "list": [
-            { "platform": "sputniknewscn", "label": "俄罗斯卫星通讯社" }
-        ]
-    },
-    {
-        "platform": "thepaper",
-        "label": "澎湃新闻",
-        "list": [
-            { "platform": "thepaper", "label": "澎湃新闻" }
-        ]
-    },
-    {
-        "platform": "tieba",
-        "label": "贴吧",
-        "list": [
-            { "platform": "tieba", "label": "贴吧" }
-        ]
-    },
-    {
-        "platform": "toutiao",
-        "label": "今日头条",
-        "list": [
-            { "platform": "toutiao", "label": "今日头条" }
-        ]
-    },
-    {
-        "platform": "v2ex",
-        "label": "V2EX",
-        "list": [
-            { "platform": "v2ex", "label": "V2EX" }
-        ]
-    },
-    {
-        "platform": "wallstreetcn",
-        "label": "华尔街新闻",
-        "list": [
-            { "platform": "wallstreetcn_live", "label": "实时热点" },
-            { "platform": "wallstreetcn_news", "label": "新闻" },
-            { "platform": "wallstreetcn_hot", "label": "热榜" }
-        ]
-    },
-    {
-        "platform": "weibo",
-        "label": "微博热搜",
-        "list": [
-            { "platform": "weibo", "label": "微博热搜" }
-        ]
-    },
-    {
-        "platform": "xueqiu",
-        "label": "雪球",
-        "list": [
-            { "platform": "hotstock", "label": "热门股票" }
-        ]
-    },
-    {
-        "platform": "zaobao",
-        "label": "联合早报",
-        "list": [
-            { "platform": "zaobao", "label": "联合早报" }
-        ]
-    },
-    {
-        "platform": "zhihu",
-        "label": "知乎热榜",
-        "list": [
-            { "platform": "zhihu", "label": "知乎热榜" }
-        ]
-    },
-    {
-        "platform": "cls",
-        "label": "财联社",
-        "list": [
-            { "platform": "cls_telegraph", "label": "财联社" }
-        ]
-    }
+  {
+    "category": "social",
+    "name": "社会新闻",
+    "platform": [
+      "thepaper",
+      "cankaoxiaoxi",
+      "sputniknewscn",
+      "zaobao",
+      "tieba",
+      "kaopu",
+      "hupu"
+    ]
+  },
+  {
+    "category": "tech",
+    "name": "科技资讯",
+    "platform": [
+      "github",
+      "_36kr",
+      "ithome",
+      "solidot",
+      "v2ex",
+      "coolapk",
+      "jin10",
+      "pcbeta_windows",
+      "juejin",
+      "sspai",
+      "csdn",
+      "fishpi",
+      "_51cto",
+      "nowcoder"
+    ]
+  },
+  {
+    "category": "hot",
+    "name": "热搜榜",
+    "platform": [
+      "weibo",
+      "baidu",
+      "kuaishou",
+      "douyin",
+      "zhihu",
+      "toutiao"
+    ]
+  },
+  {
+    "category": "entertainment",
+    "name": "娱乐资讯",
+    "platform": [
+      "b_hot_search",
+      "douban",
+      "bd_tv",
+      "kugou",
+      "qq_music",
+      "b_hot_video",
+      "b_rank"
+    ]
+  },
+  {
+    "category": "sports",
+    "name": "体育赛事",
+    "platform": [
+      "hupu_lol",
+      "hupu_fifa",
+      "hupu_nba",
+      "hupu_cba",
+      "hupu_csl",
+      "hupu_valorant",
+      "hupu_ewcsports",
+      "hupu_sports",
+      "hupu_kog"
+    ]
+  },
+  {
+    "category": "car",
+    "name": "汽车资讯",
+    "platform": [
+      "dcd_news",
+      "dcd_hot",
+      "autohome",
+      "autohome_hot",
+      "autohome_hot",
+      "autohome_video"
+    ]
+  },
+  {
+    "category": "finance",
+    "name": "财经新闻",
+    "platform": [
+      "wallstreetcn_hot",
+      "jqka",
+      "cls_telegraph",
+      "gelonghui",
+      "wallstreetcn_live",
+      "wallstreetcn_news",
+      "hotstock",
+      "stock_sha",
+      "stock_shb",
+      "stock_sza",
+      "stock_szb",
+      "stock_cyb",
+      "stock_zxb",
+      "stock_hk",
+      "stock_us"
+    ]
+  }
 ]
