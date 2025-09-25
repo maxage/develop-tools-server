@@ -31,4 +31,4 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD node -e "require('http').get('http://localhost:3022/platforms', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
 
 # 启动应用
-CMD ["npm", "start"]
+CMD ["npx", "tsx", "./bin/www.ts"]
