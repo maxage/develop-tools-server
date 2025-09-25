@@ -33,6 +33,6 @@ coverage
 .logs/
 data/**/*
 data/*
-package-lock.json
+# package-lock.json  # 注释掉，Docker构建需要此文件
 .env
 test/*
