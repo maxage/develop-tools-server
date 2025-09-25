@@ -19,36 +19,69 @@
 - PCbeta Windows 新闻
 - PCbeta Windows 11 新闻
 
-## 🛠️ 安装与使用
+## 🚀 快速开始
 
-### 环境要求
-- Node.js >= 16
-- npm >= 7
+### 方式一：一键部署（推荐）
 
-### 安装步骤
-
-1. 克隆项目
 ```bash
-git clone https://github.com/yourusername/develop-tools-server.git
+# 克隆项目
+git clone https://github.com/maxage/develop-tools-server.git
 cd develop-tools-server
+
+# 运行一键部署脚本
+./quick-deploy.sh
 ```
 
-2. 安装依赖
+### 方式二：Docker Compose 部署
+
 ```bash
+# 1. 准备环境文件
+cp env.example .env
+vim .env  # 编辑配置文件
+
+# 2. 启动服务
+docker-compose up -d
+
+# 3. 查看日志
+docker-compose logs -f
+```
+
+### 方式三：Docker Run 部署
+
+```bash
+# 1. 准备环境文件
+cp env.example .env
+vim .env  # 编辑配置文件
+
+# 2. 创建数据目录
+mkdir -p app_data/short-links app_data/summary
+
+# 3. 运行容器
+docker run -d \
+  --name develop-tools-server \
+  -p 5083:3022 \
+  -v $(pwd)/app_data:/app/data \
+  -v $(pwd)/.env:/app/.env \
+  --restart unless-stopped \
+  ghcr.io/maxage/develop-tools-server:latest
+```
+
+### 方式四：本地开发
+
+```bash
+# 安装依赖
 npm install
+
+# 复制环境文件
+cp env.example .env
+
+# 启动开发服务器
+npm run dev
 ```
 
-3. 配置环境变量
-创建 `.env` 文件并配置必要的环境变量：
-```env
-PORT=3000
-NODE_ENV=development
-```
+## 📖 详细部署文档
 
-4. 启动服务
-```bash
-npm start
-```
+查看 [DEPLOYMENT.md](./DEPLOYMENT.md) 获取完整的部署指南。
 
 ### API 使用示例
 

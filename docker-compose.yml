@@ -1,7 +1,7 @@
 services:
   develop-tools-server:
     # 使用GitHub Packages发布的镜像
-    image: ghcr.io/yourusername/develop-tools-server:latest
+    image: ghcr.io/maxage/develop-tools-server:latest
     container_name: develop-tools-server
     ports:
       - "5083:3022"
