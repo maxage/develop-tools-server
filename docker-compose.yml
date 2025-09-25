@@ -1,0 +1,22 @@
+services:
+  develop-tools-server:
+    # 使用GitHub Packages发布的镜像
+    image: ghcr.io/yourusername/develop-tools-server:latest
+    container_name: develop-tools-server
+    ports:
+      - "5083:3022"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=3022
+    volumes:
+      # 持久化数据存储
+      - ./app_data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3022/platforms', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
